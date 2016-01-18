@@ -1,0 +1,25 @@
+<resources>
+
+    <!-- 基本主题 -->
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- ToolBar的颜色 -->
+        <item name="colorPrimary">?attr/primary_color</item>
+        <!-- StatusBar颜色 -->
+        <item name="colorPrimaryDark">?attr/secondary_color</item>
+        <!-- 组件的强调色 -->
+        <item name="colorAccent">?attr/primary_color</item>
+        <!-- 背景色 -->
+        <item name="android:windowBackground">@color/bg_window</item>
+    </style>
+
+    <!-- 默认应用主题 -->
+    <style name="AppTheme" parent="BaseTheme">
+    </style>
+
+    <!-- 蓝色主题 -->
+    <style name="AppTheme.Blue">
+        <item name="primary_color">@color/material_blue_500</item>
+        <item name="secondary_color">@color/material_blue_700</item>
+        <item name="buttonStyle">@style/ButtonStyle.Blue</item>
+    </style>
+</resources>

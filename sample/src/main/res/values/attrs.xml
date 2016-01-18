@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 主题颜色 -->
+    <attr name="primary_color" format="color" />
+    <attr name="secondary_color" format="color" />
+</resources>

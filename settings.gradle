@@ -1,0 +1,26 @@
+println 'start build'
+
+// gradle.properties中读取全局配置放入gradle的属性中
+@SuppressWarnings("GrUnresolvedAccess")
+def initGradleProperties() {
+    println 'init gradle properties'
+    File propertyFile = file('gradle.properties')
+    Properties properties = new Properties()
+    if (propertyFile.exists()) {
+        properties.load(propertyFile.newDataInputStream())
+        gradle.ext.compileVersion = Integer.parseInt(properties.getProperty('compile_sdk_version')) // SDK编译版本
+        gradle.ext.buildVersion = properties.getProperty('build_tools_version') // 构建工具版本
+        gradle.ext.minVersion = properties.getProperty('min_sdk_version') // 最小SDK版本
+        gradle.ext.targetVersion = properties.getProperty('target_sdk_version') // 目标SDK版本
+        gradle.ext.verCode = Integer.parseInt(properties.getProperty('version_code')) // 版本号
+        gradle.ext.verName = properties.getProperty('version_name') // 版本名称
+        gradle.ext.supportVersion = properties.getProperty('support_version') // android support version
+        println 'init gradle properties complete'
+    } else {
+        println 'gradle.properties is not found';
+    }
+}
+
+initGradleProperties()
+
+include ':sample', ':jlog'

@@ -1,0 +1,28 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion gradle.compileVersion
+    buildToolsVersion gradle.buildVersion
+
+    defaultConfig {
+        applicationId "com.jiongbull.sample"
+        minSdkVersion gradle.minVersion
+        targetSdkVersion gradle.targetVersion
+        versionCode gradle.verCode
+        versionName gradle.verName
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+        }
+    }
+}
+
+dependencies {
+    compile "com.android.support:appcompat-v7:${gradle.supportVersion}"
+    compile project(':jlog')
+}
