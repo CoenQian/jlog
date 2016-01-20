@@ -36,24 +36,6 @@
 # 重新定义包名
 -repackageclasses ''
 
-# 不混淆指定的类和类成员
-# keep {modifier} class_specification
-
-# 不混淆指定类的成员
-# keepclassmemebers {modifier} class_specification
-
-# 不混淆指定的类和类的成员
-# keepclasswithmembers {modifier} class_specification
-
-# 不混淆指定的类和类的成员名称
-# keepnames class_specification
-
-# 不混淆类的成员名
-# keepclassmembernames class_specification
-
-# 不混淆类名和类的成员名
-# keepclasseswithmembernames class_specification
-
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
 -keep public class * extends android.app.Service
@@ -99,10 +81,6 @@
     public static **[] values();
     public static ** valueOf(java.lang.String);
 }
-
-#-keep public class * {
-#    public protected *;
-#}
 
 -keep class * implements android.os.Parcelable {
   public static final android.os.Parcelable$Creator *;

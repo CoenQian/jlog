@@ -31,4 +31,11 @@
             android:layout_marginTop="@dimen/margin"
             android:onClick="logJson"
             android:text="@string/log_json"/>
+
+    <Button style="@style/ButtonStyle.Blue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin"
+            android:onClick="logProguard"
+            android:text="@string/log_proguard"/>
 </LinearLayout>

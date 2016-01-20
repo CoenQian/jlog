@@ -303,6 +303,9 @@ public class JLog {
         if (TextUtils.isEmpty(tag)) {
             tag = getTag(element);
         }
+        Settings settings = JLog.getSettings();
+        boolean isOutputToConsole = settings.isDebug();
+        boolean isOutputToFile = settings.isWriteToFile() && settings.getLogLevelsForFile().contains(level);
         switch (level) {
             case VERBOSE:
             case DEBUG:
@@ -310,14 +313,18 @@ public class JLog {
             case WARN:
             case ERROR:
             case WTF:
-                mDefaultPrinter.printConsole(level, tag, message, element);
-                if (JLog.getSettings().isWriteToFile() && JLog.getSettings().getLogLevelsForFile().contains(level)) {
+                if (isOutputToConsole) {
+                    mDefaultPrinter.printConsole(level, tag, message, element);
+                }
+                if (isOutputToFile) {
                     mDefaultPrinter.printFile(level, tag, message, element);
                 }
                 break;
             case JSON:
-                mJsonPrinter.printConsole(level, tag, message, element);
-                if (JLog.getSettings().isWriteToFile() && JLog.getSettings().getLogLevelsForFile().contains(level)) {
+                if (isOutputToConsole) {
+                    mJsonPrinter.printConsole(level, tag, message, element);
+                }
+                if (isOutputToFile) {
                     mJsonPrinter.printFile(level, tag, message, element);
                 }
                 break;

@@ -17,6 +17,7 @@
 package com.jiongbull.sample;
 
 import com.jiongbull.jlog.JLog;
+import com.jiongbull.jlog.constant.ZoneOffset;
 
 import android.app.Application;
 
@@ -28,6 +29,9 @@ public class RootApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        JLog.init(getApplicationContext());
+        JLog.init(this)
+                .writeToFile(true)
+                .setLogDir(getString(R.string.app_name))
+                .setZoneOffset(ZoneOffset.P0800);
     }
 }

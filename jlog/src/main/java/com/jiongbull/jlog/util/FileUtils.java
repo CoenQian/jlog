@@ -61,13 +61,13 @@ public class FileUtils {
     public static boolean createDir(String dirPath) {
         File file = new File(dirPath);
         if (!file.exists()) {
-            file.mkdir();
+            file.mkdirs();
         }
         return file.exists();
     }
 
     /**
-     * 把文件写入文件中.
+     * 把文本写入文件中.
      *
      * @param dirPath    目录路径
      * @param fileName   文件名

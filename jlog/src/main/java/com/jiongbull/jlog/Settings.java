@@ -31,6 +31,8 @@ import java.util.List;
 public class Settings {
 
     private Context mContext;
+    /** DEBUG模式. */
+    private boolean mIsDebug;
     /** 字符集. */
     private String mCharset;
     /** 时间格式. */
@@ -49,6 +51,7 @@ public class Settings {
     private List<LogLevel> mLogLevelsForFile;
 
     public Settings() {
+        mIsDebug = true;
         mCharset = "UTF-8";
         mTimeFormat = "yyyy-MM-dd HH:mm:ss";
         mZoneOffset = ZoneOffset.P0800;
@@ -57,8 +60,6 @@ public class Settings {
         mLogSegment = LogSegment.TWENTY_FOUR_HOURS;
         mWriteToFile = false;
         mLogLevelsForFile = new ArrayList<>();
-        mLogLevelsForFile.add(LogLevel.INFO);
-        mLogLevelsForFile.add(LogLevel.WARN);
         mLogLevelsForFile.add(LogLevel.ERROR);
         mLogLevelsForFile.add(LogLevel.WTF);
     }
@@ -141,6 +142,15 @@ public class Settings {
 
     public Settings setLogLevelsForFile(List<LogLevel> logLevelsForFile) {
         mLogLevelsForFile = logLevelsForFile;
+        return this;
+    }
+
+    public boolean isDebug() {
+        return mIsDebug;
+    }
+
+    public Settings setDebug(boolean isDebug) {
+        mIsDebug = isDebug;
         return this;
     }
 }

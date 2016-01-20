@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">JLog</string>
+    <string name="app_version_code">app version code</string>
+    <string name="app_version_name">app version name</string>
+    <string name="os_version_code">os version code</string>
+    <string name="os_version_name">os version name</string>
+    <string name="os_display_name">os display name</string>
+    <string name="brand_info">brand info</string>
+    <string name="product_info">product info</string>
+    <string name="model_info">model info</string>
+    <string name="manufacturer_info">manufacturer info</string>
 </resources>

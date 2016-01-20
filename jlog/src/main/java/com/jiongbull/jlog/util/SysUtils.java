@@ -17,6 +17,7 @@
 package com.jiongbull.jlog.util;
 
 import com.jiongbull.jlog.JLog;
+import com.jiongbull.jlog.R;
 
 import android.content.Context;
 import android.content.pm.PackageInfo;
@@ -32,38 +33,38 @@ public class SysUtils {
     }
 
     /**
-     * 获取设备制造商名称.
+     * 获取设备制造商信息.
      *
-     * @return 设备制造商名称
+     * @return 设备制造商信息
      */
-    public static String getManufacturerName() {
+    public static String getManufacturerInfo() {
         return android.os.Build.MANUFACTURER;
     }
 
     /**
-     * 获取设备名称.
+     * 获取设备信息.
      *
-     * @return 设备名称
+     * @return 设备信息
      */
-    public static String getModelName() {
+    public static String getModelInfo() {
         return android.os.Build.MODEL;
     }
 
     /**
-     * 获取产品名称.
+     * 获取产品信息.
      *
-     * @return 产品名称
+     * @return 产品信息
      */
-    public static String getProductName() {
+    public static String getProductInfo() {
         return android.os.Build.PRODUCT;
     }
 
     /**
-     * 获取品牌名称.
+     * 获取品牌信息.
      *
-     * @return 品牌名称
+     * @return 品牌信息
      */
-    public static String getBrandName() {
+    public static String getBrandInfo() {
         return android.os.Build.BRAND;
     }
 
@@ -145,17 +146,18 @@ public class SysUtils {
      * @return 系统相关的信息
      */
     public static String genInfo() {
+        Context context = JLog.getSettings().getContext();
         String lineSeparator = getLineSeparator();
         String info = "";
-        info += "应用版本号：" + getAppVersionCode(JLog.getSettings().getContext()) + lineSeparator;
-        info += "应用版本名：" + getAppVersionName(JLog.getSettings().getContext()) + lineSeparator;
-        info += "OS版本号：" + getOsVersionCode() + lineSeparator;
-        info += "OS版本名：" + getOsVersionName() + lineSeparator;
-        info += "OS显示名：" + getOsVersionDisplayName() + lineSeparator;
-        info += "品牌信息：" + getBrandName() + lineSeparator;
-        info += "产品信息：" + getProductName() + lineSeparator;
-        info += "设备信息：" + getModelName() + lineSeparator;
-        info += "制造商信息：" + getManufacturerName() + lineSeparator + lineSeparator + lineSeparator;
+        info += context.getString(R.string.app_version_name) + ": " + getAppVersionName(context) + lineSeparator;
+        info += context.getString(R.string.app_version_code) + ": " + getAppVersionCode(context) + lineSeparator;
+        info += context.getString(R.string.os_version_name) + ": " + getOsVersionName() + lineSeparator;
+        info += context.getString(R.string.os_version_code) + ": " + getOsVersionCode() + lineSeparator;
+        info += context.getString(R.string.os_display_name) + ": " + getOsVersionDisplayName() + lineSeparator;
+        info += context.getString(R.string.brand_info) + ": " + getBrandInfo() + lineSeparator;
+        info += context.getString(R.string.product_info) + ": " + getProductInfo() + lineSeparator;
+        info += context.getString(R.string.model_info) + ": " + getModelInfo() + lineSeparator;
+        info += context.getString(R.string.manufacturer_info) + ": " + getManufacturerInfo() + lineSeparator + lineSeparator + lineSeparator;
         return info;
     }
 }

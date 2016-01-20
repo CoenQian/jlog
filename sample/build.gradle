@@ -12,17 +12,44 @@ android {
         versionName gradle.verName
     }
 
+    signingConfigs {
+        release {
+            def Console console = System.console()
+            //noinspection GroovyAssignabilityCheck
+            storeFile file('../keystore/JiongBull.jks')
+            storePassword console != null ? console.readLine("\nKeystore password: ") : ''
+            keyAlias 'android'
+            keyPassword console != null ? console.readLine("\nKey password: ") : ''
+        }
+    }
+
     buildTypes {
         debug {
             minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
+            signingConfig signingConfigs.release
+            zipAlignEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def fileName = "jlog_sample.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
         }
     }
 }
 
 dependencies {
     compile "com.android.support:appcompat-v7:${gradle.supportVersion}"
-    compile project(':jlog')
+    compile "com.jiongbull:jlog:${gradle.verName}"
 }

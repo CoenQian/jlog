@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">JLog</string>
+    <string name="app_name">JLogSample</string>
     <string name="log_normal">DEFAULT TAG</string>
     <string name="log_tag">CUSTOM TAG</string>
     <string name="log_more_than_4000">4000 LIMIT</string>
     <string name="log_json">JSON</string>
+    <string name="log_proguard">PROGUARD</string>
 
     <string name="github">GITHUB</string>
     <string name="blog">BLOG</string>

@@ -108,6 +108,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logJson(View view) {
-        JLog.json("{\"results\":[{\"location\":{\"id\":\"C23NB62W20TF\",\"name\":\"西雅图\",\"country\":\"US\",\"path\":\"西雅图,华盛顿州,美国\",\"timezone\":\"America/Los_Angeles\",\"timezone_offset\":\"-08:00\"},\"hourly_history\":[{\"text\":\"多云\",\"code\":\"4\",\"temperature\":\"6\",\"feels_like\":\"4\",\"pressure\":\"1018\",\"humidity\":\"86\",\"visibility\":\"16.09\",\"wind_direction\":\"南\",\"wind_direction_degree\":\"170\",\"wind_speed\":\"8.05\",\"wind_scale\":\"2\",\"clouds\":\"90\",\"dew_point\":\"-16\",\"last_update\":\"2015-12-02T22:45:00+08:00\"},{\"text\":\"多云\",\"code\":\"4\",\"temperature\":\"6\",\"feels_like\":\"4\",\"pressure\":\"1018\",\"humidity\":\"87\",\"visibility\":\"16.09\",\"wind_direction\":\"东南\",\"wind_direction_degree\":\"170\",\"wind_speed\":\"9.66\",\"wind_scale\":\"2\",\"clouds\":\"90\",\"dew_point\":\"-16\",\"last_update\":\"2015-12-02T21:45:00+08:00\"}]}]}");
+        JLog.json("{\"location\":{\"id\":\"C23NB62W20TF\",\"name\":\"西雅图\",\"country\":\"US\",\"path\":\"西雅图,华盛顿州,美国\",\"timezone\":\"America/Los_Angeles\",\"timezone_offset\":\"-08:00\"}}");
+    }
+
+    public void logProguard(View view) {
+        Foo foo = new Foo();
+        foo.now();
     }
 }
