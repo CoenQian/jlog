@@ -8,6 +8,8 @@ Combining with work experience, i made this libriary.
 
 Hope you enjoy it. ( ^_^ )
 
+[中文文档](https://github.com/JiongBull/jlog/blob/master/README_ZH.md)
+
 # Features
 
 * Compatible with android logcat, you can use `VERBOSE`, `DEBUG`, `INFO`, `WARN`, `ERROR` and `WTF` as well
