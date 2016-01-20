@@ -55,7 +55,7 @@ public class Settings {
         mCharset = "UTF-8";
         mTimeFormat = "yyyy-MM-dd HH:mm:ss";
         mZoneOffset = ZoneOffset.P0800;
-        mLogDir = "JLog";
+        mLogDir = "jlog";
         mLogPrefix = "";
         mLogSegment = LogSegment.TWENTY_FOUR_HOURS;
         mWriteToFile = false;

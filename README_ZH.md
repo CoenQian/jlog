@@ -1,6 +1,6 @@
-# JLog
+# jlog
 
-Jlog是一款针对Android开发者的日志工具。
+jlog是一款针对Android开发者的日志工具。
 
 [orhanobut](https://github.com/orhanobut)的[logger](https://github.com/orhanobut/logger)，[ZhaoKaiQiang](https://github.com/ZhaoKaiQiang)的[KLog](https://github.com/ZhaoKaiQiang/KLog)和[JakeWharton](https://github.com/JakeWharton)的[timber](https://github.com/JakeWharton/timber)给了我灵感和参考，感谢他们的开源精神。
 
@@ -13,14 +13,14 @@ Jlog是一款针对Android开发者的日志工具。
 # 特点
 
 * 兼容android logcat，`VERBOSE`、`DEBUG`、`INFO`、`WARN`、`ERROR`和`WTF`全都有，一个都不能少
-* 在`JSON`模式下，JLog会把json内容格式化，便于理解
-* JLog提供了调用者的类、方法和行号信息，甚至可以从控制台直接跳转到源文件
-* 简化了logcat，JLog使用调用者的类名作TAG（当然也支持自定义TAG）
+* 在`JSON`模式下，jlog会把json内容格式化，便于理解
+* jlog提供了调用者的类、方法和行号信息，甚至可以从控制台直接跳转到源文件
+* 简化了logcat，jlog使用调用者的类名作TAG（当然也支持自定义TAG）
 * 突破了logcat的4000字长度限制
-* JLog可以把日志输出到指定的目录和文件中
+* jlog可以把日志输出到指定的目录和文件中
 * 你可以决定哪些级别的日志写入文件中
-* 在日志文件的顶部，JLog提供了很多有用的运行环境相关的信息，比如`操作系统信息`、`设备信息`和`应用信息`
-* JLog针对写入文件的日志做了格式化，同时提供了足够的信息方便分析，例如`时间`、`日志等级`和`调用位置`
+* 在日志文件的顶部，jlog提供了很多有用的运行环境相关的信息，比如`操作系统信息`、`设备信息`和`应用信息`
+* jlog针对写入文件的日志做了格式化，同时提供了足够的信息方便分析，例如`时间`、`日志等级`和`调用位置`
 * 混淆后也能工作正常（获取调用位置）
 * 支持配置日志文件编码，例如`UTF-8`，`GBK`
 * 支持设置日志文件的时间格式
@@ -45,7 +45,7 @@ dependencies {
 
 ## 初始化
 
-建议在你的application的`onCreate()`方法里初始化JLog的全局配置，设置一次终身受用。
+建议在你的application的`onCreate()`方法里初始化jlog的全局配置，设置一次终身受用。
 
 ```
 public class RootApp extends Application {
@@ -115,7 +115,7 @@ JLog.init(this)
 
 ## setLogDir(String)
 
-配置日志保存的目录名称，日志目录是位于sd卡中，默认名称是`JLog`.
+配置日志保存的目录名称，日志目录是位于sd卡中，默认名称是`jlog`.
 
 ![default directory](http://7xize8.com1.z0.glb.clouddn.com/jlog_default_directory.jpg)
 
@@ -204,9 +204,9 @@ JLog.init(this)
 
 ## 用法
 
-## Jlog.v(String)
+## JLog.v(String)
 
-JLog默认会使用调用者的类名作TAG。
+jlog默认会使用调用者的类名作TAG。
 
 ![default tag](http://7xize8.com1.z0.glb.clouddn.com/default_tag.jpg)
 
@@ -218,13 +218,13 @@ JLog默认会使用调用者的类名作TAG。
 
 ## JLog.json(json)
 
-JLog会把json内容格式化，便于理解。
+jlog会把json内容格式化，便于理解。
 
 ![json](http://7xize8.com1.z0.glb.clouddn.com/json.jpg)
 
 ## 混淆
 
-JLog在混淆模式下依旧工作正常。
+jlog在混淆模式下依旧工作正常。
 
 ![logs in console](http://7xize8.com1.z0.glb.clouddn.com/proguard_console.jpg)
 
@@ -232,7 +232,7 @@ JLog在混淆模式下依旧工作正常。
 
 ## 运行环境信息
 
-在日志文件的顶部，JLog提供了很多有用的运行环境相关的信息，比如`操作系统信息`、`设备信息`和`应用信息`
+在日志文件的顶部，jlog提供了很多有用的运行环境相关的信息，比如`操作系统信息`、`设备信息`和`应用信息`
 
 ![environment info en](http://7xize8.com1.z0.glb.clouddn.com/environment_en.jpg)
 

@@ -1,6 +1,6 @@
-# JLog
+# jlog
 
-JLog is an useful log tool for android developers.
+jlog is an useful log tool for android developers.
 
 [orhanobut](https://github.com/orhanobut)'s [logger](https://github.com/orhanobut/logger), [ZhaoKaiQiang](https://github.com/ZhaoKaiQiang)'s [KLog](https://github.com/ZhaoKaiQiang/KLog) and  [JakeWharton](https://github.com/JakeWharton)'s [timber](https://github.com/JakeWharton/timber) give me inspiration and reference, thank them for their open source spirit.
 
@@ -13,15 +13,15 @@ Hope you enjoy it. ( ^_^ )
 # Features
 
 * Compatible with android logcat, you can use `VERBOSE`, `DEBUG`, `INFO`, `WARN`, `ERROR` and `WTF` as well
-* In `JSON` mode, JLog formats json content in a pretty way
-* JLog provides caller's class, method and line information, you can even jump to source from the console
-* Simplify logcat, JLog uses caller's class name as TAG(custom TAG supported as well).
+* In `JSON` mode,  formats json content in a pretty way
+* Jlog provides caller's class, method and line information, you can even jump to source from the console
+* Simplify logcat,  uses caller's class name as TAG(custom TAG supported as well).
 * Overcome logcat's 4000 words limit
-* JLog can output logs to a specified file in a specified directory
+* Jlog can output logs to a specified file in a specified directory
 * You can decide logs in which level can be outputted to file
-* At the top of log file, JLog provides a lot of useful information about running environment, such `os information`, `device information`, `apk information`
-* JLog formats logs in files in a pretty way, and provides enough information, such as `time`, `level` and `caller's positon`
-* JLog works well with proguard
+* At the top of log file,  provides a lot of useful information about running environment, such `os information`, `device information`, `apk information`
+* Jlog formats logs in files in a pretty way, and provides enough information, such as `time`, `level` and `caller's positon`
+* Jlog works well with proguard
 * Support setting log file's encoding, such as `UTF-8`, `GBK`
 * Support setting log file's time format
 * Support setting log file's timezone
@@ -41,7 +41,7 @@ dependencies {
 
 ## Initialization
 
-It is recommend that initializing JLog's global configuration in your application's `onCreate()` method, then we can use it everywhere.
+It is recommend that initializing jlog's global configuration in your application's `onCreate()` method, then we can use it everywhere.
 
 ```
 public class RootApp extends Application {
@@ -111,7 +111,7 @@ JLog.init(this)
 
 ## setLogDir(String)
 
-Configure the directory that saving logs, the directory is located in sdcard and default  name is `JLog`.
+Configure the directory that saving logs, the directory is located in sdcard and default  name is `jlog`.
 
 ![default directory](http://7xize8.com1.z0.glb.clouddn.com/jlog_default_directory.jpg)
 
@@ -198,9 +198,9 @@ JLog.init(this)
 
 # Usage
 
-## Jlog.v(String)
+## JLog.v(String)
 
-JLog will use caller's class name as default tag.
+Jlog will use caller's class name as default tag.
 
 ![default tag](http://7xize8.com1.z0.glb.clouddn.com/default_tag.jpg)
 
@@ -212,13 +212,13 @@ You can specify TAG as well.
 
 ## JLog.json(json)
 
-JLog formats json content in a pretty way
+Jlog formats json content in a pretty way
 
 ![json](http://7xize8.com1.z0.glb.clouddn.com/json.jpg)
 
 ## Proguard
 
-JLog works well with proguard.
+Jlog works well with proguard.
 
 ![logs in console](http://7xize8.com1.z0.glb.clouddn.com/proguard_console.jpg)
 
@@ -226,7 +226,7 @@ JLog works well with proguard.
 
 ## Running environment information
 
-At the top of log file, JLog provides a lot of useful information about running environment, such `os information`, `device information`, `apk information`
+At the top of log file, jlog provides a lot of useful information about running environment, such `os information`, `device information`, `apk information`
 
 ![environment info en](http://7xize8.com1.z0.glb.clouddn.com/environment_en.jpg)
 
