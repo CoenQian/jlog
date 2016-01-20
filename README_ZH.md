@@ -35,7 +35,7 @@ jlog是一款针对Android开发者的日志工具。
 
 ```
 dependencies {
-    compile 'com.jiongbull:jlog:1.0.1'
+    compile 'com.jiongbull:jlog:1.0.2'
 }
 ```
 
@@ -117,7 +117,7 @@ JLog.init(this)
 
 配置日志保存的目录名称，日志目录是位于sd卡中，默认名称是`jlog`.
 
-![default directory](http://7xize8.com1.z0.glb.clouddn.com/jlog_default_directory.jpg)
+![default directory](http://7xize8.com1.z0.glb.clouddn.com/jlog_def_directory.jpg)
 
 可以使用应用的名称作为日志目录名。
 

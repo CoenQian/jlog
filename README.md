@@ -33,7 +33,7 @@ Hope you enjoy it. ( ^_^ )
 
 ```
 dependencies {
-    compile 'com.jiongbull:jlog:1.0.1'
+    compile 'com.jiongbull:jlog:1.0.2'
 }
 ```
 
@@ -113,7 +113,7 @@ JLog.init(this)
 
 Configure the directory that saving logs, the directory is located in sdcard and default  name is `jlog`.
 
-![default directory](http://7xize8.com1.z0.glb.clouddn.com/jlog_default_directory.jpg)
+![default directory](http://7xize8.com1.z0.glb.clouddn.com/jlog_def_directory.jpg)
 
 You can use your app's name as directory's name.
 
