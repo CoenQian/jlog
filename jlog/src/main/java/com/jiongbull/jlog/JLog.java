@@ -39,14 +39,14 @@ public class JLog {
     /** 日志的打印方法名. */
     private static final String LOG_PRINT_METHOD_NAME = "printLog";
 
-    private static DefaultPrinter mDefaultPrinter;
-    private static JsonPrinter mJsonPrinter;
+    private static DefaultPrinter sDefaultPrinter;
+    private static JsonPrinter sJsonPrinter;
 
     private static Settings sSettings;
 
     public static Settings init(Context context) {
-        mDefaultPrinter = new DefaultPrinter();
-        mJsonPrinter = new JsonPrinter();
+        sDefaultPrinter = new DefaultPrinter();
+        sJsonPrinter = new JsonPrinter();
         sSettings = new Settings();
         return sSettings.setContext(context);
     }
@@ -314,18 +314,18 @@ public class JLog {
             case ERROR:
             case WTF:
                 if (isOutputToConsole) {
-                    mDefaultPrinter.printConsole(level, tag, message, element);
+                    sDefaultPrinter.printConsole(level, tag, message, element);
                 }
                 if (isOutputToFile) {
-                    mDefaultPrinter.printFile(level, tag, message, element);
+                    sDefaultPrinter.printFile(level, tag, message, element);
                 }
                 break;
             case JSON:
                 if (isOutputToConsole) {
-                    mJsonPrinter.printConsole(level, tag, message, element);
+                    sJsonPrinter.printConsole(level, tag, message, element);
                 }
                 if (isOutputToFile) {
-                    mJsonPrinter.printFile(level, tag, message, element);
+                    sJsonPrinter.printFile(level, tag, message, element);
                 }
                 break;
             default:

@@ -8,8 +8,6 @@ jlog是一款针对Android开发者的日志工具。
 
 希望你会喜欢它。( ^_^ )
 
----
-
 # 特点
 
 * 兼容android logcat，`VERBOSE`、`DEBUG`、`INFO`、`WARN`、`ERROR`和`WTF`全都有，一个都不能少
@@ -29,8 +27,6 @@ jlog是一款针对Android开发者的日志工具。
 
 ![jlog sample](http://7xize8.com1.z0.glb.clouddn.com/jlog_sample.gif)
 
----
-
 # 依赖
 
 ```
@@ -38,8 +34,6 @@ dependencies {
     compile 'com.jiongbull:jlog:1.0.2'
 }
 ```
-
----
 
 # 配置
 
@@ -200,8 +194,6 @@ JLog.init(this)
     .setZoneOffset(ZoneOffset.P0800);
 ```
 
----
-
 ## 用法
 
 ## JLog.v(String)
@@ -238,8 +230,6 @@ jlog在混淆模式下依旧工作正常。
 
 ![environment info zh](http://7xize8.com1.z0.glb.clouddn.com/environment_zh.jpg)
 
----
-
 # License
 
 ```
@@ -257,8 +247,6 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ```
-
----
 
 # 关于
 
