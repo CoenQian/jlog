@@ -33,7 +33,7 @@ Hope you enjoy it. ( ^_^ )
 
 ```
 dependencies {
-    compile 'com.jiongbull:jlog:1.0.2'
+    compile 'com.jiongbull:jlog:1.0.3'
 }
 ```
 
