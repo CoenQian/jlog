@@ -58,7 +58,7 @@ public final class TimeUtils {
      * 把用户时区的时间戳转成设置时区的时间戳
      *
      * @param millis 用户时区的时间戳
-     * @return 东八区时间戳
+     * @return 目标时区的时间戳
      */
     public static long getMillis(final long millis) {
         return getUtcMillis(millis) + JLog.getSettings().getZoneOffset().getValue();

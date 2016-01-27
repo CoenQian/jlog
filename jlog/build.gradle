@@ -13,7 +13,6 @@ android {
         targetSdkVersion gradle.targetVersion
         versionCode gradle.verCode
         versionName gradle.verName
-        multiDexEnabled true
     }
     buildTypes {
         debug {
