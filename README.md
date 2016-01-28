@@ -1,5 +1,8 @@
 # jlog
 
+[![Download](https://api.bintray.com/packages/jiongbull/maven/jlog/images/download.svg) ](https://bintray.com/jiongbull/maven/jlog/_latestVersion)
+[![Build Status](https://travis-ci.org/JiongBull/jlog.svg?branch=master)](https://travis-ci.org/JiongBull/jlog)
+
 jlog is an useful log tool for android developers.
 
 [orhanobut](https://github.com/orhanobut)'s [logger](https://github.com/orhanobut/logger), [ZhaoKaiQiang](https://github.com/ZhaoKaiQiang)'s [KLog](https://github.com/ZhaoKaiQiang/KLog) and  [JakeWharton](https://github.com/JakeWharton)'s [timber](https://github.com/JakeWharton/timber) give me inspiration and reference, thank them for their open source spirit.

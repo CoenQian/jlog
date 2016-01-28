@@ -1,5 +1,8 @@
 # jlog
 
+[![Download](https://api.bintray.com/packages/jiongbull/maven/jlog/images/download.svg) ](https://bintray.com/jiongbull/maven/jlog/_latestVersion)
+[![Build Status](https://travis-ci.org/JiongBull/jlog.svg?branch=master)](https://travis-ci.org/JiongBull/jlog)
+
 jlog是一款针对Android开发者的日志工具。
 
 [orhanobut](https://github.com/orhanobut)的[logger](https://github.com/orhanobut/logger)，[ZhaoKaiQiang](https://github.com/ZhaoKaiQiang)的[KLog](https://github.com/ZhaoKaiQiang/KLog)和[JakeWharton](https://github.com/JakeWharton)的[timber](https://github.com/JakeWharton/timber)给了我灵感和参考，感谢他们的开源精神。
