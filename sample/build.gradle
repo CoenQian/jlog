@@ -49,6 +49,6 @@ android {
 
 dependencies {
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
-    //    compile "com.jiongbull:jlog:${gradle.verName}"
+//        compile "com.jiongbull:jlog:${rootProject.ext.versionName}"
     compile project(':jlog')
 }
