@@ -14,6 +14,7 @@ android:
   - android-23
   - extra
 script:
+- "./gradlew bintrayUpload"
 - "./gradlew assembleRelease"
 before_install:
 - openssl aes-256-cbc -K $encrypted_51c724e3a7c6_key -iv $encrypted_51c724e3a7c6_iv
