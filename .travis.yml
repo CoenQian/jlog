@@ -2,7 +2,6 @@ language: android
 sudo: false
 jdk:
 - oraclejdk7
-- oraclejdk8
 env:
   matrix:
   - ANDROID_TARGET=android-23  ANDROID_ABI=armeabi-v7a armeabi
@@ -17,7 +16,7 @@ script:
 - "./gradlew assembleRelease"
 before_install:
 - openssl aes-256-cbc -K $encrypted_51c724e3a7c6_key -iv $encrypted_51c724e3a7c6_iv
-  -in keystore/JiongBull.jks.enc -out keystore/JiongBull.jks -d
+  -in JiongBull.jks.enc -out JiongBull.jks -d
 deploy:
   provider: releases
   api_key:

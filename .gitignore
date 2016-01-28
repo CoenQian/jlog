@@ -35,4 +35,4 @@ proguard/
 captures/
 
 # keystore
-keystore/JiongBull.jks
+JiongBull.jks
