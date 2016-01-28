@@ -2,67 +2,53 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
-version = gradle.verName
+version = rootProject.ext.VERSION_NAME
+group = rootProject.ext.GROUP
 
 android {
-    compileSdkVersion gradle.compileVersion
-    buildToolsVersion gradle.buildVersion
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion gradle.minVersion
-        targetSdkVersion gradle.targetVersion
-        versionCode gradle.verCode
-        versionName gradle.verName
-    }
-    buildTypes {
-        debug {
-            minifyEnabled false
-        }
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
     }
 }
 
 tasks.withType(JavaCompile) {
-    options.encoding = "UTF-8"
+    options.encoding = 'UTF-8'
 }
 
 dependencies {
 }
 
-def siteUrl = 'https://github.com/JiongBull/jlog'
-def gitUrl = 'https://github.com/JiongBull/jlog.git'
-group = "com.jiongbull"
-
 install {
     repositories.mavenInstaller {
-        // This generates POM.xml with proper parameters
         pom {
             project {
-                packaging 'aar'
-                // Add your description here
-                name 'Android logcat tool'  //项目描述
-                url siteUrl
+                packaging rootProject.ext.POM_PACKAGING
+                name rootProject.ext.POM_DESCRIPTION
+                url rootProject.ext.POM_URL
                 // Set your license
                 licenses {
                     license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                        name rootProject.ext.POM_LICENCE_NAME
+                        url rootProject.ext.POM_LICENCE_URL
                     }
                 }
                 developers {
                     developer {
-                        id 'JiongBull'       //填写开发者基本信息
-                        name 'JiongBull'
-                        email 'jiongbull717@gmail.com'
+                        id rootProject.ext.POM_DEVELOPER_ID
+                        name rootProject.ext.POM_DEVELOPER_NAME
+                        email rootProject.ext.POM_DEVELOPER_EMAIL
                     }
                 }
                 scm {
-                    connection gitUrl
-                    developerConnection gitUrl
-                    url siteUrl
+                    url rootProject.ext.POM_URL
+                    connection rootProject.ext.POM_GIT_URL
+                    developerConnection rootProject.ext.POM_GIT_URL
                 }
             }
         }
@@ -76,7 +62,7 @@ task sourcesJar(type: Jar) {
 task javadoc(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-    options.encoding = "utf-8"
+    options.encoding = 'UTF-8'
 }
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
@@ -86,18 +72,17 @@ artifacts {
     archives javadocJar
     archives sourcesJar
 }
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
-    configurations = ['archives']
+    user = BINTRAY_USER
+    key = BINTRAY_APIKEY
+    configurations = rootProject.ext.BINTRAY_CONFIGURATIONS
     pkg {
-        repo = "maven"  //发布到Bintray的那个仓库里，默认账户有四个库，我们这里上传到maven库
-        name = "jlog"  //发布到Bintray上的项目名字
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ["Apache-2.0"]
+        repo = rootProject.ext.BINTRAY_REPO
+        name = rootProject.ext.BINTRAY_NAME
+        websiteUrl = rootProject.ext.POM_URL
+        vcsUrl = rootProject.ext.POM_GIT_URL
+        licenses = rootProject.ext.BINTRAY_LICENSES
         publish = true
     }
 }

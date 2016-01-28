@@ -1,0 +1,30 @@
+language: android
+sudo: false
+jdk:
+- oraclejdk7
+- oraclejdk8
+env:
+  matrix:
+  - ANDROID_TARGET=android-23  ANDROID_ABI=armeabi-v7a armeabi
+android:
+  components:
+  - platform-tools
+  - tools
+  - build-tools-23.0.2
+  - android-23
+  - extra
+script:
+- "./gradlew assembleRelease"
+before_install:
+- openssl aes-256-cbc -K $encrypted_51c724e3a7c6_key -iv $encrypted_51c724e3a7c6_iv
+  -in JiongBull.jks.enc -out keystore/JiongBull.jks -d
+deploy:
+  provider: releases
+  api_key:
+    secure: qYo1+axnVwcags/3tOBBQCP3FixCIJJJ0MaPGOTCh173TD0AQJkD54Zka1y6uAecSFTFB09FUN+TpNO5Pd1EDoHq/IeYDwoQvXgJedxDMhVx7HE+X4R01qSFxHdKrru63Vw0Gjjb7DULBxqu1GtJMnRq4yMlRIAR0uNuoy4PLxFFBC/xTjVW7PTEmjUrptM4PTSpvY5Gv+lE+hiMjjIeL5NnoVFmGS2wmLm6okawmesbZ1liWuBkrMz+4/FpSvG5fEFoUhbaMGhJET68OQaJdWzfkqobOvwgSkwbX4zUSL7oAKEe1P1TRzU8k3P6nFRTY3dcmRR6DcJ+2BlpBjoQtb6ixVZyYagVAxWu3UWF+kVJHH1GeEu/BLUQ0WYko01wTPZsSjGJVr+O4oVNZRMa5WbOiAHNw+QdumS+F7VR0GDwaIP/mak7qOIdVWEfJz+0UVSHAViGPzWPPiLUQOngIZMuT/ryNABTTKPlbQ9lJgkvt+d/Pcz/ObOMMvBhAUHsPMuI4l63nrBZDrir1bsCYTq8XeeBHxw1YCi2RZhnmcWE1LH9hnB2VK492gO3/1BmeaQ7isJZ3TCiQipIegSEenKS23QwCIGdl9F1k6CeZ+ctPe14v+TvvWfDKQ0rTGygHgugy6Ex3vJ7Lhuvtp+NXJ2Pl7AvNnRJ+Jz/xmodQcU=
+  file: sample/build/outputs/apk/jlog_sample.apk
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
+    repo: JiongBull/jlog

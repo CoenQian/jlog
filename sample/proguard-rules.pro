@@ -100,12 +100,19 @@
 -keep public class * extends android.support.v4.**
 ##---------------End: proguard configuration for support-v4----------
 
-##---------------Begin: proguard configuration for support-v4----------
+##---------------Begin: proguard configuration for support-v7----------
+-dontwarn android.support.v7.**
+-keep interface android.support.v7.app.** { *; }
+-keep class android.support.v7.** { *; }
+-keep public class * extends android.support.v7.**
+##---------------End: proguard configuration for support-v7----------
+
+##---------------Begin: proguard configuration for android net----------
 -dontwarn android.net.http.**
 -keep interface android.net.http.** { *; }
 -keep class android.net.http.** { *; }
 -keep public class * extends android.net.http.**
-##---------------End: proguard configuration for support-v4----------
+##---------------End: proguard configuration for android net----------
 
 ##---------------Begin: proguard configuration for JLog----------
 -keep class com.jiongbull.jlog.** { *; }

@@ -1,26 +1,23 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion gradle.compileVersion
-    buildToolsVersion gradle.buildVersion
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.jiongbull.sample"
-        minSdkVersion gradle.minVersion
-        targetSdkVersion gradle.targetVersion
-        versionCode gradle.verCode
-        versionName gradle.verName
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
     }
 
     signingConfigs {
         release {
-//            在这里配置你的签名来测试混淆
-//            def Console console = System.console()
-//            //noinspection GroovyAssignabilityCheck
-//            storeFile file('../keystore/JiongBull.jks')
-//            storePassword console != null ? console.readLine("\nKeystore password: ") : ''
-//            keyAlias 'android'
-//            keyPassword console != null ? console.readLine("\nKey password: ") : ''
+            storeFile file('../keystore/JiongBull.jks')
+            storePassword project.hasProperty('KEYSTORE_PASS') ? KEYSTORE_PASS : System.getenv('KEYSTORE_PASS')
+            keyAlias project.hasProperty('ALIAS_NAME') ? ALIAS_NAME : System.getenv("ALIAS_NAME")
+            keyPassword project.hasProperty('ALIAS_PASS') ? ALIAS_PASS : System.getenv("ALIAS_PASS")
         }
     }
 
@@ -31,21 +28,17 @@ android {
             shrinkResources false
         }
         release {
-            minifyEnabled false
-            zipAlignEnabled false
-            shrinkResources false
-//          测试混淆时使用注释代码
-//            minifyEnabled true
-//            signingConfig signingConfigs.release
-//            zipAlignEnabled true
-//            shrinkResources true
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+            signingConfig signingConfigs.release
+            zipAlignEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 
             applicationVariants.all { variant ->
                 variant.outputs.each { output ->
                     def outputFile = output.outputFile
                     if (outputFile != null && outputFile.name.endsWith('.apk')) {
-                        def fileName = "jlog_sample_v${gradle.verName}.apk"
+                        def fileName = "jlog_sample.apk"
                         output.outputFile = new File(outputFile.parent, fileName)
                     }
                 }
@@ -55,6 +48,7 @@ android {
 }
 
 dependencies {
-    compile "com.android.support:appcompat-v7:${gradle.supportVersion}"
-    compile "com.jiongbull:jlog:${gradle.verName}"
+    compile "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
+    //    compile "com.jiongbull:jlog:${gradle.verName}"
+    compile project(':jlog')
 }

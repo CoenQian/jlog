@@ -1,5 +1,3 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 buildscript {
     repositories {
         jcenter()
@@ -8,9 +6,6 @@ buildscript {
         classpath 'com.android.tools.build:gradle:1.5.0'
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
     }
 }
 
@@ -22,4 +17,35 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    compileSdkVersion = 23 // SDK编译版本
+    buildToolsVersion = '23.0.2' // 构建工具版本
+    minSdkVersion = 8 // 最小SDK版本
+    targetSdkVersion = 23 // 目标SDK版本
+    versionCode = 4 // 版本号
+    versionName = '1.0.3' // 版本名称
+    supportVersion = '23.1.1' // android support version
+
+    GROUP = 'com.jiongbull'
+    VERSION_NAME = versionName
+    POM_PACKAGING = 'aar'
+    POM_DESCRIPTION = 'Android logcat tool'
+
+    POM_URL = 'https://github.com/JiongBull/jlog'
+    POM_GIT_URL = 'https://github.com/JiongBull/jlog.git'
+
+
+    POM_LICENCE_NAME = 'The Apache Software License, Version 2.0'
+    POM_LICENCE_URL = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+
+    POM_DEVELOPER_ID = 'JiongBull'
+    POM_DEVELOPER_NAME = 'JiongBull'
+    POM_DEVELOPER_EMAIL = 'jiongbull717@gmail.com'
+
+    BINTRAY_REPO = 'maven'
+    BINTRAY_NAME = 'jlog'
+    BINTRAY_CONFIGURATIONS = ['archives']
+    BINTRAY_LICENSES = ['Apache-2.0']
 }
