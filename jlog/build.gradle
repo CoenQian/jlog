@@ -74,8 +74,8 @@ artifacts {
 }
 
 bintray {
-    user = BINTRAY_USER
-    key = BINTRAY_APIKEY
+    user = project.hasProperty('BINTRAY_USER') ? KEYSTORE_PASS : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('BINTRAY_APIKEY') ? KEYSTORE_PASS : System.getenv('BINTRAY_APIKEY')
     configurations = rootProject.ext.BINTRAY_CONFIGURATIONS
     pkg {
         repo = rootProject.ext.BINTRAY_REPO
