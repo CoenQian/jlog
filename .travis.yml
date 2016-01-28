@@ -11,10 +11,12 @@ android:
   - tools
   - build-tools-23.0.2
   - android-23
-  - extra
+  - extra-android-support
+  - extra-android-m2repository
 script:
-- "./gradlew assembleRelease"
-#before_install:
+- ./gradlew assembleRelease
+before_install:
+# - chmod +x gradlew
 #- openssl aes-256-cbc -K $encrypted_51c724e3a7c6_key -iv $encrypted_51c724e3a7c6_iv
 #  -in JiongBull.jks.enc -out JiongBull.jks -d
 deploy:
