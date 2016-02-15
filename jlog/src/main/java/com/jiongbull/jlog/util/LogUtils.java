@@ -21,6 +21,7 @@ import com.jiongbull.jlog.constant.LogLevel;
 import com.jiongbull.jlog.constant.LogSegment;
 
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -46,7 +47,7 @@ public final class LogUtils {
      * @param tag     标签
      * @param message 信息
      */
-    public static void log(LogLevel level, String tag, String message) {
+    public static void log(@NonNull LogLevel level, @NonNull String tag, @NonNull String message) {
         int subNum = message.length() / MAX_LOG_LENGTH;
         if (subNum > 0) {
             int index = 0;
@@ -68,7 +69,7 @@ public final class LogUtils {
      * @param className 全限定类名
      * @return 类名
      */
-    public static String getSimpleClassName(String className) {
+    public static String getSimpleClassName(@NonNull String className) {
         int lastIndex = className.lastIndexOf(".");
         int index = lastIndex + 1;
         if (lastIndex > 0 && index < className.length()) {
@@ -139,7 +140,7 @@ public final class LogUtils {
      * @param tag   标签
      * @param sub   信息
      */
-    private static void logSub(LogLevel level, String tag, String sub) {
+    private static void logSub(@NonNull LogLevel level, @NonNull String tag, @NonNull String sub) {
         switch (level) {
             case VERBOSE:
                 Log.v(tag, sub);

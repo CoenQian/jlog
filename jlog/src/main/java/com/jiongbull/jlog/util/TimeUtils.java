@@ -18,6 +18,7 @@ package com.jiongbull.jlog.util;
 
 import com.jiongbull.jlog.JLog;
 
+import android.support.annotation.NonNull;
 import android.text.format.DateFormat;
 
 import java.util.Calendar;
@@ -89,7 +90,7 @@ public final class TimeUtils {
      * @param fmt    时间格式
      * @return 格式化后的时间文本
      */
-    public static String format(long millis, String fmt) {
+    public static String format(long millis, @NonNull String fmt) {
         return DateFormat.format(fmt, millis).toString();
     }
 

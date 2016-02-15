@@ -1,4 +1,5 @@
 <resources>
+    <string name="unknow_version">unknow version</string>
     <string name="app_version_code">app version code</string>
     <string name="app_version_name">app version name</string>
     <string name="os_version_code">os version code</string>

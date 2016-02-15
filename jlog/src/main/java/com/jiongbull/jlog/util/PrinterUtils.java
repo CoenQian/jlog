@@ -19,6 +19,8 @@ package com.jiongbull.jlog.util;
 import com.jiongbull.jlog.constant.LogLevel;
 import com.jiongbull.jlog.printer.Printer;
 
+import android.support.annotation.NonNull;
+
 import java.io.File;
 
 /**
@@ -42,7 +44,7 @@ public class PrinterUtils {
      * @param tag     标签
      * @param message 信息
      */
-    public static void printConsole(LogLevel level, String tag, String message) {
+    public static void printConsole(@NonNull LogLevel level, @NonNull String tag, @NonNull String message) {
         LogUtils.log(level, tag, message);
     }
 
@@ -51,7 +53,7 @@ public class PrinterUtils {
      *
      * @param message 信息
      */
-    public static void printFile(String message) {
+    public static void printFile(@NonNull String message) {
         String dirPath = LogUtils.genDirPath();
         String fileName = LogUtils.genFileName();
 
@@ -69,7 +71,7 @@ public class PrinterUtils {
      * @param element 对战元素
      * @return 装饰后的信息
      */
-    public static String decorateMsgForConsole(String message, StackTraceElement element) {
+    public static String decorateMsgForConsole(String message, @NonNull StackTraceElement element) {
         String methodName = element.getMethodName();
         int lineNumber = element.getLineNumber();
         String fileName = element.getFileName();
@@ -84,7 +86,8 @@ public class PrinterUtils {
      * @param element 堆栈元素
      * @return 装饰后的信息
      */
-    public static String decorateMsgForFile(LogLevel level, String message, StackTraceElement element) {
+    public static String decorateMsgForFile(
+            @NonNull LogLevel level, String message, @NonNull StackTraceElement element) {
         String time = TimeUtils.getCurTime();
         String fileName = element.getFileName();
         int lineNum = element.getLineNumber();

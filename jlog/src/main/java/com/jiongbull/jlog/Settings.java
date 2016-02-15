@@ -21,6 +21,7 @@ import com.jiongbull.jlog.constant.LogSegment;
 import com.jiongbull.jlog.constant.ZoneOffset;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +69,7 @@ public class Settings {
         return mContext;
     }
 
-    public Settings setContext(Context context) {
+    public Settings setContext(@NonNull Context context) {
         mContext = context;
         return this;
     }
@@ -77,7 +78,7 @@ public class Settings {
         return mCharset;
     }
 
-    public Settings setCharset(String charset) {
+    public Settings setCharset(@NonNull String charset) {
         mCharset = charset;
         return this;
     }
@@ -86,7 +87,7 @@ public class Settings {
         return mTimeFormat;
     }
 
-    public Settings setTimeFormat(String timeFormat) {
+    public Settings setTimeFormat(@NonNull String timeFormat) {
         mTimeFormat = timeFormat;
         return this;
     }
@@ -95,7 +96,7 @@ public class Settings {
         return mZoneOffset;
     }
 
-    public Settings setZoneOffset(ZoneOffset zoneOffset) {
+    public Settings setZoneOffset(@NonNull ZoneOffset zoneOffset) {
         mZoneOffset = zoneOffset;
         return this;
     }
@@ -104,7 +105,7 @@ public class Settings {
         return mLogDir;
     }
 
-    public Settings setLogDir(String logDir) {
+    public Settings setLogDir(@NonNull String logDir) {
         mLogDir = logDir;
         return this;
     }
@@ -113,7 +114,7 @@ public class Settings {
         return mLogPrefix;
     }
 
-    public Settings setLogPrefix(String logPrefix) {
+    public Settings setLogPrefix(@NonNull String logPrefix) {
         mLogPrefix = logPrefix;
         return this;
     }
@@ -122,7 +123,7 @@ public class Settings {
         return mLogSegment;
     }
 
-    public Settings setLogSegment(LogSegment logSegment) {
+    public Settings setLogSegment(@NonNull LogSegment logSegment) {
         mLogSegment = logSegment;
         return this;
     }
@@ -140,7 +141,7 @@ public class Settings {
         return mLogLevelsForFile;
     }
 
-    public Settings setLogLevelsForFile(List<LogLevel> logLevelsForFile) {
+    public Settings setLogLevelsForFile(@NonNull List<LogLevel> logLevelsForFile) {
         mLogLevelsForFile = logLevelsForFile;
         return this;
     }

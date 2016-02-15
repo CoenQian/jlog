@@ -22,6 +22,7 @@ import com.jiongbull.jlog.R;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 /**
@@ -101,7 +102,7 @@ public class SysUtils {
      * @param context {@link Context}
      * @return 版本号
      */
-    public static int getAppVersionCode(Context context) {
+    public static int getAppVersionCode(@NonNull Context context) {
         int appVersionCode = 0;
         try {
             PackageManager manager = context.getPackageManager();
@@ -119,8 +120,8 @@ public class SysUtils {
      * @param context {@link Context}
      * @return 版本名
      */
-    public static String getAppVersionName(final Context context) {
-        String appVersionName = "未知版本";
+    public static String getAppVersionName(@NonNull Context context) {
+        String appVersionName = context.getString(R.string.unknow_version);
         try {
             PackageManager manager = context.getPackageManager();
             PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
