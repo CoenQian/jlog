@@ -23,6 +23,7 @@ import com.jiongbull.jlog.printer.Printer;
 import com.jiongbull.jlog.util.LogUtils;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -44,7 +45,7 @@ public class JLog {
 
     private static Settings sSettings;
 
-    public static Settings init(Context context) {
+    public static Settings init(@NonNull Context context) {
         sDefaultPrinter = new DefaultPrinter();
         sJsonPrinter = new JsonPrinter();
         sSettings = new Settings();
@@ -55,7 +56,7 @@ public class JLog {
         return sSettings;
     }
 
-    public static void setSettings(Settings settings) {
+    public static void setSettings(@NonNull Settings settings) {
         sSettings = settings;
     }
 
@@ -65,7 +66,7 @@ public class JLog {
      * @param tag     标签
      * @param message 信息
      */
-    public static void v(String tag, String message) {
+    public static void v(String tag, @NonNull String message) {
         printLog(LogLevel.VERBOSE, tag, null, message);
     }
 
@@ -74,7 +75,7 @@ public class JLog {
      *
      * @param message 信息
      */
-    public static void v(String message) {
+    public static void v(@NonNull String message) {
         printLog(LogLevel.VERBOSE, null, null, message);
     }
 
@@ -84,7 +85,7 @@ public class JLog {
      * @param tag     标签
      * @param message 信息
      */
-    public static void d(String tag, String message) {
+    public static void d(String tag, @NonNull String message) {
         printLog(LogLevel.DEBUG, tag, null, message);
     }
 
@@ -93,7 +94,7 @@ public class JLog {
      *
      * @param message 信息
      */
-    public static void d(String message) {
+    public static void d(@NonNull String message) {
         printLog(LogLevel.DEBUG, null, null, message);
     }
 
@@ -103,7 +104,7 @@ public class JLog {
      * @param tag     标签
      * @param message 信息
      */
-    public static void i(String tag, String message) {
+    public static void i(String tag, @NonNull String message) {
         printLog(LogLevel.INFO, tag, null, message);
     }
 
@@ -112,7 +113,7 @@ public class JLog {
      *
      * @param message 信息
      */
-    public static void i(String message) {
+    public static void i(@NonNull String message) {
         printLog(LogLevel.INFO, null, null, message);
     }
 
@@ -122,7 +123,7 @@ public class JLog {
      * @param tag     标签
      * @param message 信息
      */
-    public static void w(String tag, String message) {
+    public static void w(String tag, @NonNull String message) {
         printLog(LogLevel.WARN, tag, null, message);
     }
 
@@ -131,7 +132,7 @@ public class JLog {
      *
      * @param message 信息
      */
-    public static void w(String message) {
+    public static void w(@NonNull String message) {
         printLog(LogLevel.WARN, null, null, message);
     }
 
@@ -162,7 +163,7 @@ public class JLog {
      * @param tag     标签
      * @param message 信息
      */
-    public static void e(String tag, String message) {
+    public static void e(String tag, @NonNull String message) {
         printLog(LogLevel.ERROR, tag, null, message);
     }
 
@@ -171,7 +172,7 @@ public class JLog {
      *
      * @param message 信息
      */
-    public static void e(String message) {
+    public static void e(@NonNull String message) {
         printLog(LogLevel.ERROR, null, null, message);
     }
 
@@ -181,7 +182,7 @@ public class JLog {
      * @param tag 标签
      * @param t   {@link Throwable}
      */
-    public static void e(String tag, Throwable t) {
+    public static void e(String tag, @NonNull Throwable t) {
         printLog(LogLevel.ERROR, tag, t, null);
     }
 
@@ -190,7 +191,7 @@ public class JLog {
      *
      * @param t {@link Throwable}
      */
-    public static void e(Throwable t) {
+    public static void e(@NonNull Throwable t) {
         printLog(LogLevel.ERROR, null, t, null);
     }
 
@@ -221,7 +222,7 @@ public class JLog {
      * @param tag     标签
      * @param message 信息
      */
-    public static void wtf(String tag, String message) {
+    public static void wtf(String tag, @NonNull String message) {
         printLog(LogLevel.WTF, tag, null, message);
     }
 
@@ -230,7 +231,7 @@ public class JLog {
      *
      * @param message 信息
      */
-    public static void wtf(String message) {
+    public static void wtf(@NonNull String message) {
         printLog(LogLevel.WTF, null, null, message);
     }
 
@@ -240,7 +241,7 @@ public class JLog {
      * @param tag 标签
      * @param t   {@link Throwable}
      */
-    public static void wtf(String tag, Throwable t) {
+    public static void wtf(String tag, @NonNull Throwable t) {
         printLog(LogLevel.WTF, tag, t, null);
     }
 
@@ -249,7 +250,7 @@ public class JLog {
      *
      * @param t {@link Throwable}
      */
-    public static void wtf(Throwable t) {
+    public static void wtf(@NonNull Throwable t) {
         printLog(LogLevel.WTF, null, t, null);
     }
 
@@ -259,7 +260,7 @@ public class JLog {
      * @param tag  标签
      * @param json json
      */
-    public static void json(String tag, String json) {
+    public static void json(String tag, @NonNull String json) {
         printLog(LogLevel.JSON, tag, null, json);
     }
 
@@ -268,7 +269,7 @@ public class JLog {
      *
      * @param json 信息
      */
-    public static void json(String json) {
+    public static void json(@NonNull String json) {
         printLog(LogLevel.JSON, null, null, json);
     }
 
@@ -280,7 +281,7 @@ public class JLog {
      * @param t       {@link Throwable}
      * @param message 信息
      */
-    private static void printLog(LogLevel level, String tag, Throwable t, String message) {
+    private static void printLog(@NonNull LogLevel level, String tag, Throwable t, String message) {
         if (TextUtils.isEmpty(message)) {
             message = null;
         }
@@ -339,7 +340,7 @@ public class JLog {
      * @param element 堆栈元素
      * @return TAG
      */
-    private static String getTag(StackTraceElement element) {
+    private static String getTag(@NonNull StackTraceElement element) {
         return LogUtils.getSimpleClassName(element.getClassName());
     }
 
@@ -349,7 +350,7 @@ public class JLog {
      * @param elements 堆栈元素
      * @return 索引位置，-1 - 不可用
      */
-    private static int getStackIndex(StackTraceElement[] elements) {
+    private static int getStackIndex(@NonNull StackTraceElement[] elements) {
         boolean isChecked = false;
         StackTraceElement element;
         for (int i = 0; i < elements.length; i++) {
@@ -374,7 +375,7 @@ public class JLog {
      * @param t {@link Throwable}
      * @return 异常栈里的信息
      */
-    private static String getStackTraceString(Throwable t) {
+    private static String getStackTraceString(@NonNull Throwable t) {
         StringWriter sw = new StringWriter();
         PrintWriter pw = new PrintWriter(sw);
         t.printStackTrace(pw);

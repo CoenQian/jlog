@@ -1,4 +1,4 @@
-package com.jiongbull.sample;
+package com.jiongbull.jlog.sample;
 
 import com.jiongbull.jlog.JLog;
 import com.jiongbull.jlog.util.TimeUtils;

@@ -5,7 +5,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.jiongbull.sample"
+        applicationId "com.jiongbull.jlog.sample"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode rootProject.ext.versionCode
@@ -49,6 +49,5 @@ android {
 
 dependencies {
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
-//        compile "com.jiongbull:jlog:${rootProject.ext.versionName}"
     compile project(':jlog')
 }

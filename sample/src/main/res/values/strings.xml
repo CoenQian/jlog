@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JLogSample</string>
+    <string name="app_name">JlogSample</string>
     <string name="log_normal">DEFAULT TAG</string>
     <string name="log_tag">CUSTOM TAG</string>
     <string name="log_more_than_4000">4000 LIMIT</string>

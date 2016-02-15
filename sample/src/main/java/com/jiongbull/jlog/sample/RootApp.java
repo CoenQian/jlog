@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jiongbull.sample;
+package com.jiongbull.jlog.sample;
 
 import com.jiongbull.jlog.JLog;
 import com.jiongbull.jlog.constant.ZoneOffset;
@@ -22,7 +22,7 @@ import com.jiongbull.jlog.constant.ZoneOffset;
 import android.app.Application;
 
 /**
- * Root Application.
+ * Root application.
  */
 public class RootApp extends Application {
 

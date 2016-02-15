@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.jiongbull.sample;
+package com.jiongbull.jlog.sample;
 
 import com.jiongbull.jlog.JLog;
 

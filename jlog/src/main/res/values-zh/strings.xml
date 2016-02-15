@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="unknow_version">未知版本</string>
     <string name="os_version_code">OS版本号</string>
     <string name="os_version_name">OS版本名</string>
     <string name="os_display_name">OS显示名</string>

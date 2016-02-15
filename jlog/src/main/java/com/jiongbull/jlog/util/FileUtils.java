@@ -18,6 +18,7 @@ package com.jiongbull.jlog.util;
 
 import com.jiongbull.jlog.JLog;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.io.File;
@@ -47,7 +48,7 @@ public class FileUtils {
      * @param filePath 路径
      * @return true - 存在，false - 不存在
      */
-    public static boolean isExist(String filePath) {
+    public static boolean isExist(@NonNull String filePath) {
         File file = new File(filePath);
         return file.exists();
     }
@@ -58,10 +59,10 @@ public class FileUtils {
      * @param dirPath 目录路径
      * @return true - 目录存在（创建成功或已存在），false - 目录不存在
      */
-    public static boolean createDir(String dirPath) {
+    public static boolean createDir(@NonNull String dirPath) {
         File file = new File(dirPath);
         if (!file.exists()) {
-            file.mkdirs();
+            return file.mkdirs();
         }
         return file.exists();
     }
@@ -74,7 +75,7 @@ public class FileUtils {
      * @param content    待写内容
      * @param isOverride 写入模式，true - 覆盖，false - 追加
      */
-    public static void write(final String dirPath, final String fileName, final String content, final boolean isOverride) {
+    public static void write(@NonNull final String dirPath, @NonNull final String fileName, @NonNull final String content, final boolean isOverride) {
         sExecutorService.execute(new Runnable() {
             @Override
             public void run() {
