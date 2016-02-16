@@ -34,7 +34,7 @@ jlog是一款针对Android开发者的日志工具。
 
 ```
 dependencies {
-    compile 'com.jiongbull:jlog:1.0.3'
+    compile 'com.jiongbull:jlog:1.0.4'
 }
 ```
 
