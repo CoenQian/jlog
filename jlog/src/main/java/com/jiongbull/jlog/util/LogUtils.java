@@ -99,7 +99,7 @@ public final class LogUtils {
         String curDate = TimeUtils.getCurDate();
         String fileName;
         if (JLog.getSettings().getLogSegment() == LogSegment.TWENTY_FOUR_HOURS) {
-            fileName = logPrefix + TimeUtils.getCurDate() + LOG_EXT;
+            fileName = logPrefix + curDate + LOG_EXT;
         } else {
             fileName = logPrefix + curDate + "_" + getCurSegment() + LOG_EXT;
         }
@@ -111,7 +111,7 @@ public final class LogUtils {
      *
      * @return 比如“0001”表示00:00-01:00
      */
-    private static String getCurSegment() {
+    public static String getCurSegment() {
         int hour = TimeUtils.getCurHour();
         LogSegment logSegment = JLog.getSettings().getLogSegment();
         int segmentValue = logSegment.getValue();
@@ -129,7 +129,7 @@ public final class LogUtils {
      * @param num 数值
      * @return num在[0, 9]时前置补0，否则返回原值
      */
-    private static String getDoubleNum(int num) {
+    public static String getDoubleNum(int num) {
         return num < 10 ? "0" + num : String.valueOf(num);
     }
 

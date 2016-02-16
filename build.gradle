@@ -24,8 +24,8 @@ ext {
     buildToolsVersion = '23.0.2' // 构建工具版本
     minSdkVersion = 8 // 最小SDK版本
     targetSdkVersion = 23 // 目标SDK版本
-    versionCode = 6 // 版本号
-    versionName = '1.0.5' // 版本名称
+    versionCode = 5 // 版本号
+    versionName = '1.0.4' // 版本名称
     supportVersion = '23.1.1' // android support version
 
     GROUP = 'com.jiongbull'
