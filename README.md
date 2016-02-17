@@ -66,6 +66,8 @@ Add follow codes to your proguard file (eg: `proguard-rules.pro`).
 -keepattributes SourceFile, LineNumberTable
 -keep class com.jiongbull.jlog.** { *; }
 ```
+If your app's `targetSdkVersion` is 23+, don't forget to apply for `android.permission.WRITE_EXTERNAL_STORAGE` permission in your splash or main activity.
+You can refer to this page, [在Android 6.0 设备上动态获取权限](http://gudong.name/%E6%8A%80%E6%9C%AF/2015/11/10/android_m_permission.html).
 
 ## init(context)
 

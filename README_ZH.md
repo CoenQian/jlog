@@ -64,6 +64,8 @@ public class RootApp extends Application {
 -keepattributes SourceFile, LineNumberTable
 -keep class com.jiongbull.jlog.** { *; }
 ```
+如果你的应用的'targetSdkVersion'是23+，不要忘记在闪屏页或首页申请'android.permission.WRITE_EXTERNAL_STORAG'权限。
+你可以参考这篇文章，[在Android 6.0 设备上动态获取权限](http://gudong.name/%E6%8A%80%E6%9C%AF/2015/11/10/android_m_permission.html).
 
 ## init(context)
 
