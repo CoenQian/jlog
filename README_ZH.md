@@ -27,6 +27,7 @@ jlog是一款针对Android开发者的日志工具。
 * 支持设置日志文件的时间格式
 * 支持设置日志文件的时区（便于调试其他时区的设备）
 * 日志按照时间切片写入到不同的文件中，默认是24小时，文件名诸如`2016-01-19.log`，你也可以指定`前缀`和`时间切片`，比如`用户标识_2016-01-19_2021.log`
+* **如果你需要把日志同步上传到[七牛云存储](http://www.qiniu.com/)，可以考虑使用这个项目[jlog-qiniu](https://github.com/JiongBull/jlog-qiniu)**
 
 ![jlog sample](http://7xize8.com1.z0.glb.clouddn.com/jlog_sample.gif)
 
