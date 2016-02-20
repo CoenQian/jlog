@@ -36,7 +36,7 @@ jlog是一款针对Android开发者的日志工具。
 
 # 依赖
 
-```
+```groovy
 dependencies {
     compile 'com.jiongbull:jlog:1.0.4'
 }
@@ -48,7 +48,7 @@ dependencies {
 
 建议在你的application的`onCreate()`方法里初始化jlog的全局配置，设置一次终身受用。
 
-```
+```java
 public class RootApp extends Application {
 
     @Override
@@ -64,7 +64,7 @@ public class RootApp extends Application {
 
 记得把下面的代码添加到你的混淆文件中（例如：`proguard-rules.pro`）。
 
-```
+```xml
 -keepattributes SourceFile, LineNumberTable
 -keep class com.jiongbull.jlog.** { *; }
 ```
@@ -75,21 +75,21 @@ public class RootApp extends Application {
 
 建议使用application context。
 
-```
+```java
 JLog.init(this);
 ```
 ## setDebug(boolean)
 
 默认是true，日志会输出到控制台中。在发布版本的时候请把这个变量设置为false。
 
-```
+```java
 JLog.init(this)
     .setDebug(false);
 ```
 
 或
 
-```
+```java
 JLog.init(this)
     .setDebug(BuildConfig.DEBUG);
 ```
@@ -98,7 +98,7 @@ JLog.init(this)
 
 日志开关，如果是true，日志会输出到文件中，默认是false。
 
-```
+```java
 JLog.init(this)
     .writeToFile(true);
 ```
@@ -107,7 +107,7 @@ JLog.init(this)
 
 这个方法决定了哪些级别的日志可以输出到文件中。默认的日志级别是`LogLevel.ERROR`和`LogLevel.WTF`。
 
-```
+```java
 List<LogLevel> logLevels = new ArrayList<>();
 logLevels.add(LogLevel.ERROR);
 logLevels.add(LogLevel.JSON);
@@ -124,7 +124,7 @@ JLog.init(this)
 
 可以使用应用的名称作为日志目录名。
 
-```
+```java
 JLog.init(this)
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name));
@@ -134,7 +134,7 @@ JLog.init(this)
 
 子目录当然也支持啦，可以使用一些唯一标识作为子目录的名称，比如用户标识。
 
-```
+```java
 JLog.init(this)
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name) + File.separator + "JiongBull");
@@ -146,7 +146,7 @@ JLog.init(this)
 
 如果不想使用子目录，你或许可以试一试日志文件的`前缀`功能。
 
-```
+```java
 JLog.init(this)
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
@@ -159,7 +159,7 @@ JLog.init(this)
 
 日志按照时间切片写入到不同的文件中，默认是24小时，文件名诸如`2016-01-19.log`，如果设置为`LogSegment.ONE_HOUR`，文件名就会变成诸如`2016-01-19_0203.log`那样了，表示文件里记录的是2:00到3:00的日志。
 
-```
+```java
 JLog.init(this)
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
@@ -172,7 +172,7 @@ JLog.init(this)
 
 配置日志文件的编码格式，默认是`UTF-8`。
 
-```
+```java
 JLog.init(this)
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
@@ -183,7 +183,7 @@ JLog.init(this)
 
 默认的时间格式是`yyyy-MM-dd HH:mm:ss`，你可以使用这个方法让日志更容易理解。
 
-```
+```java
 JLog.init(this)
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
@@ -196,7 +196,7 @@ JLog.init(this)
 
 我们可以指定文件里日志时间的时区，而不受用户位置的影响，这样会更容易定位问题，默认是`ZoneOffset.P0800`（+0800），表示“北京时间”。
 
-```
+```java
 JLog.init(this)
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))

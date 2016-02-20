@@ -63,7 +63,7 @@ All configuration is saved in `JLog` class. You can obtain it by `getSettings()`
 
 Add follow codes to your proguard file (eg: `proguard-rules.pro`).
 
-```
+```xml
 -keepattributes SourceFile, LineNumberTable
 -keep class com.jiongbull.jlog.** { *; }
 ```
