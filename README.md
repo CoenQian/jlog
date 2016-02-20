@@ -35,7 +35,7 @@ Hope you enjoy it. ( ^_^ )
 
 # Dependency
 
-```
+```groovy
 dependencies {
     compile 'com.jiongbull:jlog:1.0.4'
 }
@@ -47,7 +47,7 @@ dependencies {
 
 It is recommend that initializing jlog's global configuration in your application's `onCreate()` method, then we can use it everywhere.
 
-```
+```java
 public class RootApp extends Application {
 
     @Override
@@ -74,21 +74,21 @@ You can refer to this page, [在Android 6.0 设备上动态获取权限](http://
 
 Set application context.
 
-```
+```java
 JLog.init(this);
 ```
 ## setDebug(boolean)
 
 Default is true, logs will be outputed to the console. Pls set this variable as false when release your app.
 
-```
+```java
 JLog.init(this)
     .setDebug(false);
 ```
 
 or
 
-```
+```java
 JLog.init(this)
     .setDebug(BuildConfig.DEBUG);
 ```
@@ -97,7 +97,7 @@ JLog.init(this)
 
 If true, logs will output to file, default is false.
 
-```
+```java
 JLog.init(this)
     .writeToFile(true);
 ```
@@ -106,7 +106,7 @@ JLog.init(this)
 
 This method decides logs in which level can be outputted to file. Default logLevels are `LogLevel.ERROR` and `LogLevel.WTF`.
 
-```
+```java
 List<LogLevel> logLevels = new ArrayList<>();
 logLevels.add(LogLevel.ERROR);
 logLevels.add(LogLevel.JSON);
@@ -123,7 +123,7 @@ Configure the directory that saving logs, the directory is located in sdcard and
 
 You can use your app's name as directory's name.
 
-```
+```java
 JLog.init(this)
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name));
@@ -133,7 +133,7 @@ JLog.init(this)
 
 Sub directory is supported as well, you can use some unique words as sub directory's name, such as user id.
 
-```
+```java
 JLog.init(this)
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name) + File.separator + "JiongBull");
@@ -145,7 +145,7 @@ JLog.init(this)
 
 If you don't want use sub directory for logs, you may try `prefix` for log file.
 
-```
+```java
 JLog.init(this)
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
@@ -158,7 +158,7 @@ JLog.init(this)
 
 Logs are divied into separate files by time segment, default is 24H, file's name is like `2016-01-19.log`, if is setted to `LogSegment.ONE_HOUR`, file's name is like `2016-01-19_0203`, which means logs were recorded from 2:00 to 3:30.
 
-```
+```java
 JLog.init(this)
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
@@ -171,7 +171,7 @@ JLog.init(this)
 
 Configure log file's encoding, default is `UTF-8`.
 
-```
+```java
 JLog.init(this)
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
@@ -182,7 +182,7 @@ JLog.init(this)
 
 Default time format is `yyyy-MM-dd HH:mm:ss`, you can use this method to make it easy to understand.
 
-```
+```java
 JLog.init(this)
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
@@ -195,7 +195,7 @@ JLog.init(this)
 
 We can specify log's time zone no matter where user from, this method make it easy to find bugs, default is `ZoneOffset.P0800`(+0800), which means "Beijing time".
 
-```
+```java
 JLog.init(this)
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
