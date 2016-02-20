@@ -1,5 +1,6 @@
 # jlog
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-JLog-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/3166)
 [![Download](https://api.bintray.com/packages/jiongbull/maven/jlog/images/download.svg) ](https://bintray.com/jiongbull/maven/jlog/_latestVersion)
 [![Build Status](https://travis-ci.org/JiongBull/jlog.svg?branch=master)](https://travis-ci.org/JiongBull/jlog)
 
