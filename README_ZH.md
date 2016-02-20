@@ -1,10 +1,12 @@
-# jlog
+# jlog(基佬哥)
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-JLog-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/3166)
 [![Download](https://api.bintray.com/packages/jiongbull/maven/jlog/images/download.svg) ](https://bintray.com/jiongbull/maven/jlog/_latestVersion)
 [![Build Status](https://travis-ci.org/JiongBull/jlog.svg?branch=master)](https://travis-ci.org/JiongBull/jlog)
 
 jlog是一款针对Android开发者的日志工具。
+
+![jilao](http://7xize8.com1.z0.glb.clouddn.com/jlog_jilao.png)
 
 [orhanobut](https://github.com/orhanobut)的[logger](https://github.com/orhanobut/logger)，[ZhaoKaiQiang](https://github.com/ZhaoKaiQiang)的[KLog](https://github.com/ZhaoKaiQiang/KLog)和[JakeWharton](https://github.com/JakeWharton)的[timber](https://github.com/JakeWharton/timber)给了我灵感和参考，感谢他们的开源精神。
 
@@ -201,7 +203,7 @@ JLog.init(this)
     .setZoneOffset(ZoneOffset.P0800);
 ```
 
-## 用法
+# 用法
 
 ## JLog.v(String)
 
