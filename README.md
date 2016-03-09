@@ -30,6 +30,7 @@ Hope you enjoy it. ( ^_^ )
 * Support setting log file's time format
 * Support setting log file's timezone
 * Logs are divied into separate files by time segment, default is 24H, file's name is like `2016-01-19.log`, you can set `prefix` and `segment` of time, such as `userid_2016-01-19_2021.log`
+* Support package
 
 ![jlog sample](http://7xize8.com1.z0.glb.clouddn.com/jlog_sample.gif)
 
@@ -37,7 +38,7 @@ Hope you enjoy it. ( ^_^ )
 
 ```groovy
 dependencies {
-    compile 'com.jiongbull:jlog:1.0.4'
+    compile 'com.jiongbull:jlog:1.0.5'
 }
 ```
 
@@ -77,6 +78,18 @@ Set application context.
 ```java
 JLog.init(this);
 ```
+
+## setPackagedLevel(int)
+
+If you want to package jlog, please set package's level(hierarchy), otherwise, jlog can't get invoker's info.
+
+```java
+JLog.init(this)
+    .setPackagedLevel(1);
+```
+
+![jlog's stack structure](http://7xize8.com1.z0.glb.clouddn.com/jlog_jlog%E7%9A%84%E8%B0%83%E7%94%A8%E6%A0%88%E7%BB%93%E6%9E%84.png)
+
 ## setDebug(boolean)
 
 Default is true, logs will be outputed to the console. Pls set this variable as false when release your app.

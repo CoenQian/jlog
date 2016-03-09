@@ -31,6 +31,7 @@ jlog是一款针对Android开发者的日志工具。
 * 支持设置日志文件的时区（便于调试其他时区的设备）
 * 日志按照时间切片写入到不同的文件中，默认是24小时，文件名诸如`2016-01-19.log`，你也可以指定`前缀`和`时间切片`，比如`用户标识_2016-01-19_2021.log`
 * **如果你需要把日志同步上传到[七牛云存储](http://www.qiniu.com/)，可以考虑使用这个项目[jlog-qiniu](https://github.com/JiongBull/jlog-qiniu)**
+* 支持再封装
 
 ![jlog sample](http://7xize8.com1.z0.glb.clouddn.com/jlog_sample.gif)
 
@@ -38,7 +39,7 @@ jlog是一款针对Android开发者的日志工具。
 
 ```groovy
 dependencies {
-    compile 'com.jiongbull:jlog:1.0.4'
+    compile 'com.jiongbull:jlog:1.0.5'
 }
 ```
 
@@ -78,6 +79,18 @@ public class RootApp extends Application {
 ```java
 JLog.init(this);
 ```
+
+## setPackagedLevel(int)
+
+如果需要再封装jlog，请设置封装的层级，否则jlog不能获取调用者的信息.
+
+```java
+JLog.init(this)
+    .setPackagedLevel(1);
+```
+
+![jlog's stack structure](http://7xize8.com1.z0.glb.clouddn.com/jlog_jlog%E7%9A%84%E8%B0%83%E7%94%A8%E6%A0%88%E7%BB%93%E6%9E%84.png)
+
 ## setDebug(boolean)
 
 默认是true，日志会输出到控制台中。在发布版本的时候请把这个变量设置为false。

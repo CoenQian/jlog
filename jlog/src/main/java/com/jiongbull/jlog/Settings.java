@@ -50,6 +50,8 @@ public class Settings {
     private boolean mWriteToFile;
     /** 写入文件的日志级别. */
     private List<LogLevel> mLogLevelsForFile;
+    /** 封装的层级，V、D、I、W、E、WTF、JSON共用，请确保他们封装在同一层级中. */
+    private int mPackagedLevel;
 
     public Settings() {
         mIsDebug = true;
@@ -63,6 +65,7 @@ public class Settings {
         mLogLevelsForFile = new ArrayList<>();
         mLogLevelsForFile.add(LogLevel.ERROR);
         mLogLevelsForFile.add(LogLevel.WTF);
+        mPackagedLevel = 0;
     }
 
     public Context getContext() {
@@ -152,6 +155,15 @@ public class Settings {
 
     public Settings setDebug(boolean isDebug) {
         mIsDebug = isDebug;
+        return this;
+    }
+
+    public int getPackagedLevel() {
+        return mPackagedLevel;
+    }
+
+    public Settings setPackagedLevel(int packagedLevel) {
+        mPackagedLevel = packagedLevel;
         return this;
     }
 }

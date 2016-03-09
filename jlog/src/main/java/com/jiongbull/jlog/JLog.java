@@ -360,7 +360,7 @@ public class JLog {
                 isChecked = true;
             }
             if (isChecked) {
-                int index = i + 2;
+                int index = i + 2 + getSettings().getPackagedLevel();
                 if (index < elements.length) {
                     return index;
                 }
