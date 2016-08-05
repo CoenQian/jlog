@@ -22,7 +22,6 @@ import com.jiongbull.jlog.printer.JsonPrinter;
 import com.jiongbull.jlog.printer.Printer;
 import com.jiongbull.jlog.util.LogUtils;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
@@ -45,11 +44,11 @@ public class JLog {
 
     private static Settings sSettings;
 
-    public static Settings init(@NonNull Context context) {
+    public static Settings init() {
         sDefaultPrinter = new DefaultPrinter();
         sJsonPrinter = new JsonPrinter();
         sSettings = new Settings();
-        return sSettings.setContext(context);
+        return sSettings.setContext(JLogGlobal.getContext());
     }
 
     public static Settings getSettings() {

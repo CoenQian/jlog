@@ -55,7 +55,7 @@ public class RootApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        JLog.init(this)
+        JLog.init()
             .setDebug(BuildConfig.DEBUG);
     }
 }
@@ -77,7 +77,7 @@ public class RootApp extends Application {
 建议使用application context。
 
 ```java
-JLog.init(this);
+JLog.init();
 ```
 
 ## setPackagedLevel(int)
@@ -85,25 +85,25 @@ JLog.init(this);
 如果需要再封装jlog，请设置封装的层级，否则jlog不能获取调用者的信息.
 
 ```java
-JLog.init(this)
+JLog.init()
     .setPackagedLevel(1);
 ```
 
-![jlog's stack structure](http://7xize8.com1.z0.glb.clouddn.com/jlog_jlog%E7%9A%84%E8%B0%83%E7%94%A8%E6%A0%88%E7%BB%93%E6%9E%84.png)
+![jlog's stack structure](http://7xize8.com1.z0.glb.clouddn.com/jlog%E7%9A%84%E8%B0%83%E7%94%A8%E6%A0%88%E7%BB%93%E6%9E%84.png)
 
 ## setDebug(boolean)
 
 默认是true，日志会输出到控制台中。在发布版本的时候请把这个变量设置为false。
 
 ```java
-JLog.init(this)
+JLog.init()
     .setDebug(false);
 ```
 
 或
 
 ```java
-JLog.init(this)
+JLog.init()
     .setDebug(BuildConfig.DEBUG);
 ```
 
@@ -112,7 +112,7 @@ JLog.init(this)
 日志开关，如果是true，日志会输出到文件中，默认是false。
 
 ```java
-JLog.init(this)
+JLog.init()
     .writeToFile(true);
 ```
 
@@ -124,7 +124,7 @@ JLog.init(this)
 List<LogLevel> logLevels = new ArrayList<>();
 logLevels.add(LogLevel.ERROR);
 logLevels.add(LogLevel.JSON);
-JLog.init(this)
+JLog.init()
     .writeToFile(true)
     .setLogLevelsForFile(logLevels);
 ```
@@ -138,7 +138,7 @@ JLog.init(this)
 可以使用应用的名称作为日志目录名。
 
 ```java
-JLog.init(this)
+JLog.init()
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name));
 ```
@@ -148,7 +148,7 @@ JLog.init(this)
 子目录当然也支持啦，可以使用一些唯一标识作为子目录的名称，比如用户标识。
 
 ```java
-JLog.init(this)
+JLog.init()
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name) + File.separator + "JiongBull");
 ```
@@ -160,7 +160,7 @@ JLog.init(this)
 如果不想使用子目录，你或许可以试一试日志文件的`前缀`功能。
 
 ```java
-JLog.init(this)
+JLog.init()
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
     .setLogPrefix("JiongBull");
@@ -173,7 +173,7 @@ JLog.init(this)
 日志按照时间切片写入到不同的文件中，默认是24小时，文件名诸如`2016-01-19.log`，如果设置为`LogSegment.ONE_HOUR`，文件名就会变成诸如`2016-01-19_0203.log`那样了，表示文件里记录的是2:00到3:00的日志。
 
 ```java
-JLog.init(this)
+JLog.init()
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
     .setLogSegment(LogSegment.ONE_HOUR);
@@ -186,7 +186,7 @@ JLog.init(this)
 配置日志文件的编码格式，默认是`UTF-8`。
 
 ```java
-JLog.init(this)
+JLog.init()
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
     .setCharset("GBK");
@@ -197,7 +197,7 @@ JLog.init(this)
 默认的时间格式是`yyyy-MM-dd HH:mm:ss`，你可以使用这个方法让日志更容易理解。
 
 ```java
-JLog.init(this)
+JLog.init()
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
     .setTimeFormat("yyyy年MM月dd日 HH时mm分ss秒");
@@ -210,7 +210,7 @@ JLog.init(this)
 我们可以指定文件里日志时间的时区，而不受用户位置的影响，这样会更容易定位问题，默认是`ZoneOffset.P0800`（+0800），表示“北京时间”。
 
 ```java
-JLog.init(this)
+JLog.init()
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
     .setZoneOffset(ZoneOffset.P0800);

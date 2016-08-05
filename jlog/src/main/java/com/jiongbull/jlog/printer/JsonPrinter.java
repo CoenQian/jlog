@@ -38,7 +38,7 @@ public class JsonPrinter implements Printer {
             if (message.startsWith("{")) {
                 JSONObject jsonObject = new JSONObject(message);
                 json = jsonObject.toString(JSON_INDENT);
-            } else if (message.startsWith("{")) {
+            } else if (message.startsWith("[")) {
                 JSONArray jsonArray = new JSONArray(message);
                 json = jsonArray.toString(JSON_INDENT);
             } else {

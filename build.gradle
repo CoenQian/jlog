@@ -3,8 +3,8 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.5.0'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.4'
+        classpath 'com.android.tools.build:gradle:2.1.2'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.7'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:1.3'
     }
 }
@@ -20,13 +20,14 @@ task clean(type: Delete) {
 }
 
 ext {
-    compileSdkVersion = 23 // SDK编译版本
-    buildToolsVersion = '23.0.2' // 构建工具版本
-    minSdkVersion = 8 // 最小SDK版本
-    targetSdkVersion = 23 // 目标SDK版本
-    versionCode = 6 // 版本号
-    versionName = '1.0.5' // 版本名称
-    supportVersion = '23.1.1' // android support version
+    compileSdkVersion = 24 // SDK编译版本
+    buildToolsVersion = '24.0.1'
+    minSdkVersion = 8
+    targetSdkVersion = 24
+    versionCode = 7
+    versionName = '1.0.6'
+    supportVersion = '24.1.1'
+    joorVersion = '0.9.6'
 
     GROUP = 'com.jiongbull'
     VERSION_NAME = versionName

@@ -29,9 +29,9 @@ import java.io.File;
 public class PrinterUtils {
 
     /** 控制台打印的内容格式. */
-    private static final String PRINT_CONSOLE_FORMAT = "[(%1$s:%2$d)#%3$s]" + Printer.LINE_SEPARATOR + "%4$s";
+    private static final String PRINT_CONSOLE_FORMAT = "[(%1$s:%2$d)#%3$s Thread:%4$s]" + Printer.LINE_SEPARATOR + "%5$s";
     /** 文件中保存的内容格式. */
-    private static final String PRINT_FILE_FORMAT = "[%1$s %2$s %3$s:%4$d]" + Printer.LINE_SEPARATOR + "%5$s"
+    private static final String PRINT_FILE_FORMAT = "[%1$s %2$s %3$s:%4$d Thread:%5$s]" + Printer.LINE_SEPARATOR + "%6$s"
             + Printer.LINE_SEPARATOR + Printer.LINE_SEPARATOR;
 
     private PrinterUtils() {
@@ -75,7 +75,8 @@ public class PrinterUtils {
         String methodName = element.getMethodName();
         int lineNumber = element.getLineNumber();
         String fileName = element.getFileName();
-        return String.format(PRINT_CONSOLE_FORMAT, fileName, lineNumber, methodName, message);
+        String threadName = Thread.currentThread().getName();
+        return String.format(PRINT_CONSOLE_FORMAT, fileName, lineNumber, methodName, threadName, message);
     }
 
     /**
@@ -91,6 +92,7 @@ public class PrinterUtils {
         String time = TimeUtils.getCurTime();
         String fileName = element.getFileName();
         int lineNum = element.getLineNumber();
-        return String.format(PRINT_FILE_FORMAT, time, level.getValue(), fileName, lineNum, message);
+        String threadName = Thread.currentThread().getName();
+        return String.format(PRINT_FILE_FORMAT, time, level.getValue(), fileName, lineNum, threadName, message);
     }
 }

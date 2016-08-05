@@ -4,9 +4,11 @@
 [![Download](https://api.bintray.com/packages/jiongbull/maven/jlog/images/download.svg) ](https://bintray.com/jiongbull/maven/jlog/_latestVersion)
 [![Build Status](https://travis-ci.org/JiongBull/jlog.svg?branch=master)](https://travis-ci.org/JiongBull/jlog)
 
-jlog is an useful log tool for android developers.
+jlog is a useful log tool for android developers which was inspired by these projects:
 
-[orhanobut](https://github.com/orhanobut)'s [logger](https://github.com/orhanobut/logger), [ZhaoKaiQiang](https://github.com/ZhaoKaiQiang)'s [KLog](https://github.com/ZhaoKaiQiang/KLog) and  [JakeWharton](https://github.com/JakeWharton)'s [timber](https://github.com/JakeWharton/timber) give me inspiration and reference, thank them for their open source spirit.
+* [orhanobut](https://github.com/orhanobut)'s [logger](https://github.com/orhanobut/logger)
+* [ZhaoKaiQiang](https://github.com/ZhaoKaiQiang)'s [KLog](https://github.com/ZhaoKaiQiang/KLog)
+* [JakeWharton](https://github.com/JakeWharton)'s [timber](https://github.com/JakeWharton/timber)
 
 Combining with work experience, i made this libriary.
 
@@ -54,7 +56,7 @@ public class RootApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        JLog.init(this)
+        JLog.init()
             .setDebug(BuildConfig.DEBUG);
     }
 }
@@ -76,7 +78,7 @@ You can refer to this page, [在Android 6.0 设备上动态获取权限](http://
 Set application context.
 
 ```java
-JLog.init(this);
+JLog.init();
 ```
 
 ## setPackagedLevel(int)
@@ -84,25 +86,25 @@ JLog.init(this);
 If you want to package jlog, please set package's level(hierarchy), otherwise, jlog can't get invoker's info.
 
 ```java
-JLog.init(this)
+JLog.init()
     .setPackagedLevel(1);
 ```
 
-![jlog's stack structure](http://7xize8.com1.z0.glb.clouddn.com/jlog_jlog%E7%9A%84%E8%B0%83%E7%94%A8%E6%A0%88%E7%BB%93%E6%9E%84.png)
+![jlog's stack structure](http://7xize8.com1.z0.glb.clouddn.com/jlog%E7%9A%84%E8%B0%83%E7%94%A8%E6%A0%88%E7%BB%93%E6%9E%84.png)
 
 ## setDebug(boolean)
 
 Default is true, logs will be outputed to the console. Pls set this variable as false when release your app.
 
 ```java
-JLog.init(this)
+JLog.init()
     .setDebug(false);
 ```
 
 or
 
 ```java
-JLog.init(this)
+JLog.init()
     .setDebug(BuildConfig.DEBUG);
 ```
 
@@ -111,7 +113,7 @@ JLog.init(this)
 If true, logs will output to file, default is false.
 
 ```java
-JLog.init(this)
+JLog.init()
     .writeToFile(true);
 ```
 
@@ -123,7 +125,7 @@ This method decides logs in which level can be outputted to file. Default logLev
 List<LogLevel> logLevels = new ArrayList<>();
 logLevels.add(LogLevel.ERROR);
 logLevels.add(LogLevel.JSON);
-JLog.init(this)
+JLog.init()
     .writeToFile(true)
     .setLogLevelsForFile(logLevels);
 ```
@@ -137,7 +139,7 @@ Configure the directory that saving logs, the directory is located in sdcard and
 You can use your app's name as directory's name.
 
 ```java
-JLog.init(this)
+JLog.init()
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name));
 ```
@@ -147,7 +149,7 @@ JLog.init(this)
 Sub directory is supported as well, you can use some unique words as sub directory's name, such as user id.
 
 ```java
-JLog.init(this)
+JLog.init()
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name) + File.separator + "JiongBull");
 ```
@@ -159,7 +161,7 @@ JLog.init(this)
 If you don't want use sub directory for logs, you may try `prefix` for log file.
 
 ```java
-JLog.init(this)
+JLog.init()
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
     .setLogPrefix("JiongBull");
@@ -172,7 +174,7 @@ JLog.init(this)
 Logs are divied into separate files by time segment, default is 24H, file's name is like `2016-01-19.log`, if is setted to `LogSegment.ONE_HOUR`, file's name is like `2016-01-19_0203`, which means logs were recorded from 2:00 to 3:30.
 
 ```java
-JLog.init(this)
+JLog.init()
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
     .setLogSegment(LogSegment.ONE_HOUR);
@@ -185,7 +187,7 @@ JLog.init(this)
 Configure log file's encoding, default is `UTF-8`.
 
 ```java
-JLog.init(this)
+JLog.init()
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
     .setCharset("GBK");
@@ -196,7 +198,7 @@ JLog.init(this)
 Default time format is `yyyy-MM-dd HH:mm:ss`, you can use this method to make it easy to understand.
 
 ```java
-JLog.init(this)
+JLog.init()
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
     .setTimeFormat("yyyy年MM月dd日 HH时mm分ss秒");
@@ -209,7 +211,7 @@ JLog.init(this)
 We can specify log's time zone no matter where user from, this method make it easy to find bugs, default is `ZoneOffset.P0800`(+0800), which means "Beijing time".
 
 ```java
-JLog.init(this)
+JLog.init()
     .writeToFile(true)
     .setLogDir(getString(R.string.app_name))
     .setZoneOffset(ZoneOffset.P0800);

@@ -29,7 +29,7 @@ public class RootApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        JLog.init(this)
+        JLog.init()
                 .writeToFile(true)
                 .setLogDir(getString(R.string.app_name))
                 .setZoneOffset(ZoneOffset.P0800);
