@@ -27,6 +27,7 @@ public enum LogLevel {
     WARN("WARN"),
     ERROR("ERROR"),
     WTF("WTF"),
+    CRASH("CRASH"),
     JSON("JSON");
 
     private String mValue;

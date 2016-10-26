@@ -84,8 +84,7 @@ public final class LogUtils {
      * @return 日志目录路径
      */
     public static String genDirPath() {
-        String dir = JLog.getSettings().getLogDir();
-        return Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + dir;
+        return JLog.getSettings().getLogDir();
     }
 
     /**
@@ -102,6 +101,24 @@ public final class LogUtils {
             fileName = logPrefix + curDate + LOG_EXT;
         } else {
             fileName = logPrefix + curDate + "_" + getCurSegment() + LOG_EXT;
+        }
+        return fileName;
+    }
+
+    /**
+     * 生成崩溃日志文件名.
+     *
+     * @return 崩溃日志文件名
+     */
+    public static String genCrashFileName() {
+        String logPrefix = JLog.getSettings().getLogPrefix();
+        logPrefix = TextUtils.isEmpty(logPrefix) ? "" : logPrefix + "_";
+        String curDate = TimeUtils.getCurDate();
+        String fileName;
+        if (JLog.getSettings().getLogSegment() == LogSegment.TWENTY_FOUR_HOURS) {
+            fileName = logPrefix + curDate + "_crash" + LOG_EXT;
+        } else {
+            fileName = logPrefix + curDate + "_" + getCurSegment() + "_crash" + LOG_EXT;
         }
         return fileName;
     }
@@ -155,6 +172,7 @@ public final class LogUtils {
                 Log.w(tag, sub);
                 break;
             case ERROR:
+            case CRASH:
                 Log.e(tag, sub);
                 break;
             case WTF:

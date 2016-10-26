@@ -32,7 +32,11 @@ public class DefaultPrinter implements Printer {
     @Override
     public void printFile(LogLevel level, String tag, String message, StackTraceElement element) {
         synchronized (Printer.class) {
-            PrinterUtils.printFile(PrinterUtils.decorateMsgForFile(level, message, element));
+            if (level != LogLevel.CRASH) {
+                PrinterUtils.printFile(PrinterUtils.decorateMsgForFile(level, message, element));
+            } else {
+                PrinterUtils.printCrashFile(PrinterUtils.decorateMsgForFile(level, message, element));
+            }
         }
     }
 }

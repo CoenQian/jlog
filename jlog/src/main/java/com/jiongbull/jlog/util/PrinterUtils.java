@@ -54,8 +54,22 @@ public class PrinterUtils {
      * @param message 信息
      */
     public static void printFile(@NonNull String message) {
-        String dirPath = LogUtils.genDirPath();
         String fileName = LogUtils.genFileName();
+        print(message, fileName);
+    }
+
+    /**
+     * 崩溃日志打印输出到文件
+     *
+     * @param message 信息
+     */
+    public static void printCrashFile(@NonNull String message) {
+        String fileName = LogUtils.genCrashFileName();
+        print(message, fileName);
+    }
+
+    private static void print(@NonNull String message, @NonNull String fileName) {
+        String dirPath = LogUtils.genDirPath();
 
         if (!FileUtils.isExist(dirPath + File.separator + fileName)) {
             message = SysUtils.genInfo() + message;

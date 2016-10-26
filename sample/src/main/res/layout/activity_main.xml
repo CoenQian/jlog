@@ -38,4 +38,18 @@
             android:layout_marginTop="@dimen/margin"
             android:onClick="logProguard"
             android:text="@string/log_proguard"/>
+
+    <Button style="@style/ButtonStyle.Blue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin"
+            android:onClick="logCrash"
+            android:text="@string/log_crash"/>
+
+    <Button style="@style/ButtonStyle.Blue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin"
+            android:onClick="ziplog"
+            android:text="@string/ziplog"/>
 </LinearLayout>

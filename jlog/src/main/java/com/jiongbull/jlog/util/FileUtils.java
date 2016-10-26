@@ -102,4 +102,45 @@ public class FileUtils {
             }
         });
     }
+
+
+    /**
+     * 获取文件夹的大小
+     *
+     * @param dirPath 需要测量大小的文件夹地址
+     * @return 返回文件夹大小，单位byte
+     */
+    public static long folderSize(String dirPath) {
+        long length = 0;
+        File directory = new File(dirPath);
+        for (File file : directory.listFiles()) {
+            if (file.isFile())
+                length += file.length();
+            else
+                length += folderSize(file.getAbsolutePath());
+        }
+        return length;
+    }
+
+    /**
+     * 递归删除目录下的所有文件及子目录下所有文件
+     *
+     * @param dirPath 将要删除的文件目录地址
+     * @return 删除成功返回true，否则返回false
+     */
+    public static boolean deleteDir(String dirPath) {
+        File file = new File(dirPath);
+        if (file.isDirectory()) {
+            String[] children = file.list();
+            // 递归删除目录中的子目录下
+            for (String aChildren : children) {
+                boolean success = deleteDir(aChildren);
+                if (!success) {
+                    return false;
+                }
+            }
+        }
+        // 目录此时为空，可以删除
+        return file.delete();
+    }
 }
