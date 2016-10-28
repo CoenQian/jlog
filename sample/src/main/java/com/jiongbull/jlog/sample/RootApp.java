@@ -20,6 +20,7 @@ import com.jiongbull.jlog.JLog;
 
 import android.app.Application;
 import android.os.Environment;
+import android.util.Log;
 
 /**
  * Root application.
@@ -29,7 +30,13 @@ public class RootApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        JLog.init()
+        JLog.init(this)
                 .writeToFile(true);
+    }
+
+    @Override
+    public void onTrimMemory(int level) {
+        JLog.flushCache();
+        super.onTrimMemory(level);
     }
 }

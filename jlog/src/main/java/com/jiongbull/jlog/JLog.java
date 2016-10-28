@@ -24,6 +24,8 @@ import com.jiongbull.jlog.util.CompressUtil;
 import com.jiongbull.jlog.util.FileUtils;
 import com.jiongbull.jlog.util.LogUtils;
 
+import android.app.Application;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
@@ -50,12 +52,20 @@ public class JLog {
 
     private static Settings sSettings;
 
-    public static Settings init() {
+    /**
+     * 初始化JLog，建议在application的onCreate里初始化
+     * @param context 请传入application的context
+     * @return settings
+     */
+    public static Settings init(Context context) {
         sDefaultPrinter = new DefaultPrinter();
         sJsonPrinter = new JsonPrinter();
         sSettings = new Settings();
         CrashHandler.getInstance().init();
-        return sSettings.setContext(JLogGlobal.getContext());
+        if (!(context instanceof Application)) {
+            context = context.getApplicationContext();
+        }
+        return sSettings.setContext(context);
     }
 
     /**
@@ -111,6 +121,14 @@ public class JLog {
             JLog.e("压缩失败");
         }
         return null;
+    }
+
+    /**
+     * 一定要在application的onTrimMemory执行
+     * 在app执行内存清理时清空日志缓存列表
+     */
+    public static void flushCache() {
+        printLog(LogLevel.CRASH, null, null, "app内存清理");
     }
 
     public static Settings getSettings() {

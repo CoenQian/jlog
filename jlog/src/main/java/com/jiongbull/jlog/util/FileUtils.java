@@ -24,6 +24,7 @@ import android.util.Log;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -65,6 +66,20 @@ public class FileUtils {
             return file.mkdirs();
         }
         return file.exists();
+    }
+
+    /**
+     * 把一连串文本写入文件中
+     *
+     * @param dirPath       目录路径
+     * @param fileName      文件名
+     * @param list          待写内容
+     * @param isOverride    写入模式，true - 覆盖，false - 追加
+     */
+    public static void write(@NonNull final String dirPath, @NonNull final String fileName, @NonNull final List<String> list, final boolean isOverride) {
+        for (String str : list) {
+            write(dirPath, fileName, str, isOverride);
+        }
     }
 
     /**

@@ -21,13 +21,12 @@ task clean(type: Delete) {
 
 ext {
     compileSdkVersion = 24 // SDK编译版本
-    buildToolsVersion = '24.0.1'
-    minSdkVersion = 8
+    buildToolsVersion = '24.0.3'
+    minSdkVersion = 16
     targetSdkVersion = 24
     versionCode = 7
-    versionName = '1.0.6'
-    supportVersion = '24.1.1'
-    joorVersion = '0.9.6'
+    versionName = '1.0.7'
+    supportVersion = '24.2.1'
 
     GROUP = 'com.jiongbull'
     VERSION_NAME = versionName
