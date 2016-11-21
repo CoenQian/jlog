@@ -23,7 +23,6 @@ tasks.withType(JavaCompile) {
 
 dependencies {
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportVersion}"
-    compile "org.jooq:joor:${rootProject.ext.joorVersion}"
 }
 
 install {

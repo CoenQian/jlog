@@ -115,4 +115,13 @@ public class MainActivity extends AppCompatActivity {
         Foo foo = new Foo();
         foo.now();
     }
+
+    public void logCrash(View view) {
+        String str = null;
+        str.length();
+    }
+
+    public void ziplog(View view) {
+        JLog.zipLog();
+    }
 }

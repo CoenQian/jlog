@@ -20,14 +20,22 @@ import com.jiongbull.jlog.constant.LogLevel;
 import com.jiongbull.jlog.printer.DefaultPrinter;
 import com.jiongbull.jlog.printer.JsonPrinter;
 import com.jiongbull.jlog.printer.Printer;
+import com.jiongbull.jlog.util.CompressUtil;
+import com.jiongbull.jlog.util.FileUtils;
 import com.jiongbull.jlog.util.LogUtils;
 
+import android.app.Application;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 /**
  * JLog是一个简单的日志工具.
@@ -44,11 +52,83 @@ public class JLog {
 
     private static Settings sSettings;
 
-    public static Settings init() {
+    /**
+     * 初始化JLog，建议在application的onCreate里初始化
+     * @param context 请传入application的context
+     * @return settings
+     */
+    public static Settings init(Context context) {
         sDefaultPrinter = new DefaultPrinter();
         sJsonPrinter = new JsonPrinter();
         sSettings = new Settings();
-        return sSettings.setContext(JLogGlobal.getContext());
+        CrashHandler.getInstance().init();
+        if (!(context instanceof Application)) {
+            context = context.getApplicationContext();
+        }
+        return sSettings.setContext(context);
+    }
+
+    /**
+     * 检查日志缓存文件夹是否超过限制，超过则清空
+     * @return true -> 缓存文件夹超过限制，已清空成功; false -> 缓存文件夹未超过限制或者未清空成功
+     */
+    public static boolean checkFolderSize() {
+        long folderSize = FileUtils.folderSize(sSettings.getLogDir());
+        return folderSize >= JLog.getSettings().getCacheSize() && deleteLogDir();
+    }
+
+    /**
+     * 清空日志缓存文件夹
+     * @return true -> 清空成功; false ->清空失败
+     */
+    public static boolean deleteLogDir() {
+        return FileUtils.deleteDir(sSettings.getLogDir());
+    }
+
+    /**
+     * 将所有日志文件压缩成zip
+     * @return zip
+     */
+    public static File zipLog() {
+        final File logfolder = new File(sSettings.getLogDir());
+        // 如果Log文件夹都不存在，说明不存在崩溃日志，检查缓存是否超出大小后退出
+        if (!logfolder.exists() || logfolder.listFiles().length == 0) {
+            JLog.w("Log文件夹不存在，无法压缩");
+            return null;
+        }
+
+        File zipfile = new File(sSettings.getZipDir(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SS", Locale.getDefault()).format(System.currentTimeMillis()) + ".zip");
+        if (!FileUtils.createDir(sSettings.getZipDir())) {
+            JLog.e("zip文件夹不存在!");
+            return null;
+        }
+
+        if (!zipfile.exists()) {
+            try {
+                if (!zipfile.createNewFile()) {
+                    JLog.e("zip创建失败!");
+                }
+            } catch (IOException e) {
+                JLog.e(e.getMessage());
+                e.printStackTrace();
+            }
+        }
+
+        if (CompressUtil.zipFileAtPath(sSettings.getLogDir(), zipfile.getAbsolutePath())) {
+            JLog.i("压缩成功");
+            return zipfile;
+        } else {
+            JLog.e("压缩失败");
+        }
+        return null;
+    }
+
+    /**
+     * 一定要在application的onTrimMemory执行
+     * 在app执行内存清理时清空日志缓存列表
+     */
+    public static void flushCache() {
+        printLog(LogLevel.CRASH, null, null, "app内存清理");
     }
 
     public static Settings getSettings() {
@@ -254,6 +334,15 @@ public class JLog {
     }
 
     /**
+     * 记录“crash”类型的日志（自动生成标签）.
+     *
+     * @param message 信息
+     */
+    public static void crash(@NonNull String message) {
+        printLog(LogLevel.CRASH, null, null, message);
+    }
+
+    /**
      * 记录“json”类型的日志.
      *
      * @param tag  标签
@@ -313,6 +402,7 @@ public class JLog {
             case WARN:
             case ERROR:
             case WTF:
+            case CRASH:
                 if (isOutputToConsole) {
                     sDefaultPrinter.printConsole(level, tag, message, element);
                 }

@@ -22,6 +22,7 @@ import com.jiongbull.jlog.printer.Printer;
 import android.support.annotation.NonNull;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * 打印机工具类.
@@ -34,6 +35,7 @@ public class PrinterUtils {
     private static final String PRINT_FILE_FORMAT = "[%1$s %2$s %3$s:%4$d Thread:%5$s]" + Printer.LINE_SEPARATOR + "%6$s"
             + Printer.LINE_SEPARATOR + Printer.LINE_SEPARATOR;
 
+    private static ArrayList<String> cache = new ArrayList<>(20);
     private PrinterUtils() {
     }
 
@@ -54,14 +56,37 @@ public class PrinterUtils {
      * @param message 信息
      */
     public static void printFile(@NonNull String message) {
-        String dirPath = LogUtils.genDirPath();
         String fileName = LogUtils.genFileName();
+        print(message, fileName, false);
+    }
+
+    /**
+     * 崩溃日志打印输出到文件
+     *
+     * @param message 信息
+     */
+    public static void printCrashFile(@NonNull String message) {
+        String fileName = LogUtils.genFileName();
+        print("", fileName, true);
+
+        String crashFileName = LogUtils.genCrashFileName();
+        print(message, crashFileName, true);
+    }
+
+    private static void print(@NonNull String message, @NonNull String fileName, boolean forceWrite) {
+        String dirPath = LogUtils.genDirPath();
 
         if (!FileUtils.isExist(dirPath + File.separator + fileName)) {
-            message = SysUtils.genInfo() + message;
+            FileUtils.write(dirPath, fileName, SysUtils.genInfo(), false);
         }
 
-        FileUtils.write(dirPath, fileName, message, false);
+        cache.add(message);
+        if (!forceWrite && cache.size() < 20) {
+            return;
+        }
+
+        FileUtils.write(dirPath, fileName, cache, false);
+        cache.clear();
     }
 
     /**
