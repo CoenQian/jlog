@@ -16,8 +16,7 @@ android:
 script:
 - "./gradlew assembleRelease"
 before_install:
-- openssl aes-256-cbc -K $encrypted_51c724e3a7c6_key -iv $encrypted_51c724e3a7c6_iv
-  -in ./keystore/JiongBull.jks.enc -out ./keystore/JiongBull.jks -d
+- openssl aes-256-cbc -K $encrypted_51c724e3a7c6_key -iv $encrypted_51c724e3a7c6_iv -in keystore/JiongBull.jks.enc -out keystore/JiongBull.jks -d
 - chmod +x gradlew
 deploy:
   provider: releases
