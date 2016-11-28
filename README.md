@@ -34,6 +34,7 @@ Hope you enjoy it. ( ^_^ )
 * Support setting disk's capacity for logs
 * Support uploading logs to [qiniu](http://www.qiniu.com)
 * Support extending
+* `TimingLogger` can log the time of method proceeding
 
 ![jlog sample](http://7xize8.com1.z0.glb.clouddn.com/jlog_sample_img.gif
 )
@@ -130,7 +131,7 @@ If true, logs will output to file, default is false.
 
 ### setLogDir(String)
 
-Configure the directory which saving logs, the directory is located in internal sdcard and default  name is `jlog`.
+Configure the directory which saving logs, the directory is located in external sdcard and default  name is `jlog`.
 
 You can use your app's name as directory's name.
 
