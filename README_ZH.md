@@ -39,7 +39,7 @@ jlog是一款针对Android开发者的日志工具。
 
 ## 依赖
 
-在项目的build.gradle里添加仓库。
+在根目录的build.gradle里添加仓库。
 
 ```groovy
 allprojects {
@@ -53,7 +53,7 @@ allprojects {
 
 ```groovy
 dependencies {
-    compile 'com.github.jiongbull:jlog:0.0.1'
+     compile 'com.github.JiongBull:jlog:v0.0.1'
 }
 ```
 

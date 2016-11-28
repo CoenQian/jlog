@@ -41,7 +41,7 @@ Hope you enjoy it. ( ^_^ )
 
 ## Dependency
 
-Add the repository to the project's build.gradle.
+Add the repository to the root's build.gradle.
 
 ```groovy
 allprojects {
@@ -55,7 +55,7 @@ And add dependencies to the module's build.gradle.
 
 ```groovy
 dependencies {
-    compile 'com.github.jiongbull:jlog:0.0.1'
+     compile 'com.github.JiongBull:jlog:v0.0.1'
 }
 ```
 
