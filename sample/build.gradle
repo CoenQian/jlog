@@ -21,15 +21,23 @@ android {
     signingConfigs {
         release {
             storeFile file('../keystore/JiongBull.jks')
-            Properties properties = new Properties()
-            properties.load(rootProject.file('local.properties').newDataInputStream())
-            def keystorePass = properties.getProperty('keystorePass')
-            def aliasName = properties.getProperty('aliasName')
-            def aliasPass = properties.getProperty('aliasPass')
+            File localProperties = rootProject.file('local.properties');
+            def keystorePass, aliasName, aliasPass
+            if (localProperties.exists()) {
+                Properties properties = new Properties()
+                properties.load(localProperties.newDataInputStream())
+                keystorePass = properties.getProperty('keystorePass')
+                aliasName = properties.getProperty('aliasName')
+                aliasPass = properties.getProperty('aliasPass')
+            } else {
+                keystorePass = System.getenv('keystorePass')
+                aliasName = System.getenv("aliasName")
+                aliasPass = System.getenv("aliasPass")
+            }
 
-            storePassword keystorePass != null ? keystorePass : System.getenv('keystorePass')
-            keyAlias aliasName != null ? aliasName : System.getenv("aliasName")
-            keyPassword aliasPass != null ? aliasPass : System.getenv("aliasPass")
+            storePassword keystorePass
+            keyAlias aliasName
+            keyPassword aliasPass
         }
     }
 
