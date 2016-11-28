@@ -1,0 +1,27 @@
+ext {
+// Android Config
+// --------------------------------------------------------------------------------
+    compileSdkVersion = 24 // SDK编译版本
+    buildToolsVersion = '25.0.1' // 构建工具版本
+    minSdkVersion = 14 // 最小SDK版本
+    targetSdkVersion = 24 // 目标SDK版本
+    versionCode = 1
+    versionName = '0.0.1'
+
+// Libraries
+// --------------------------------------------------------------------------------
+    supportVersion = '24.2.1'
+    okioVersion = '1.10.0'
+
+// Modules
+// --------------------------------------------------------------------------------
+    libraryModule = [
+            supportAnnotation: "com.android.support:support-annotations:${supportVersion}",
+            supportCoreUtils : "com.android.support:support-core-utils:${supportVersion}",
+            okio             : "com.squareup.okio:okio:${okioVersion}"
+    ]
+    sampleModule = [
+            support     : "com.android.support:appcompat-v7:${supportVersion}",
+            library     : ':library'
+    ]
+}

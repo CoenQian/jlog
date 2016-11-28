@@ -1,7 +1,7 @@
 # jlog(基佬哥)
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-JLog-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/3166)
-[![Download](https://api.bintray.com/packages/jiongbull/maven/jlog/images/download.svg) ](https://bintray.com/jiongbull/maven/jlog/_latestVersion)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-jlog-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/3166)
+[![Download](https://jitpack.io/v/JiongBull/jlog.svg)](https://jitpack.io/#JiongBull/jlog)
 [![Build Status](https://travis-ci.org/JiongBull/jlog.svg?branch=master)](https://travis-ci.org/JiongBull/jlog)
 
 jlog是一款针对Android开发者的日志工具。
@@ -14,7 +14,7 @@ jlog是一款针对Android开发者的日志工具。
 
 希望你会喜欢它。( ^_^ )
 
-# 特点
+## 特点
 
 * 兼容android logcat，`VERBOSE`、`DEBUG`、`INFO`、`WARN`、`ERROR`和`WTF`全都有，一个都不能少
 * 在`JSON`模式下，jlog会把json内容格式化，便于理解
@@ -26,235 +26,209 @@ jlog是一款针对Android开发者的日志工具。
 * 在日志文件的顶部，jlog提供了很多有用的运行环境相关的信息，比如`操作系统信息`、`设备信息`和`应用信息`
 * jlog针对写入文件的日志做了格式化，同时提供了足够的信息方便分析，例如`时间`、`日志等级`和`调用位置`
 * 混淆后也能工作正常（获取调用位置）
-* 支持配置日志文件编码，例如`UTF-8`，`GBK`
 * 支持设置日志文件的时间格式
 * 支持设置日志文件的时区（便于调试其他时区的设备）
-* 日志按照时间切片写入到不同的文件中，默认是24小时，文件名诸如`2016-01-19.log`，你也可以指定`前缀`和`时间切片`，比如`用户标识_2016-01-19_2021.log`
-* 支持控制缓存大小（但需要主动清理）
-* 支持收集崩溃信息
-* **如果你需要把日志同步上传到[七牛云存储](http://www.qiniu.com/)，可以考虑使用这个项目[jlog-qiniu](https://github.com/JiongBull/jlog-qiniu)**
-* 支持再封装
+* 日志按照时间切片写入到不同的文件中，默认是24小时，文件名诸如`2016-01-19.log`，你也可以指定`前缀`和`时间切片`，比如`${userid}_2016-01-19_2021.log`
+* 支持设置日志文件的磁盘容量，超出后会按文件的最后修改时间清除
+* 支持上传日志到[七牛](http://www.qiniu.com)
+* 支持扩展
+* `TimingLogger`可以记录方法运行的时间
 
-![jlog sample](http://7xize8.com1.z0.glb.clouddn.com/jlog_sample.gif)
+![jlog sample](http://7xize8.com1.z0.glb.clouddn.com/jlog_sample_img.gif
+)
 
-# 依赖
+## 依赖
+
+在项目的build.gradle里添加仓库。
+
+```groovy
+allprojects {
+ repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+ }
+```
+
+在模块的build.gradle中添加依赖。
 
 ```groovy
 dependencies {
-    compile 'com.jiongbull:jlog:1.0.5'
+    compile 'com.github.jiongbull:jlog:0.0.1'
 }
 ```
 
-# 配置
+## 配置
 
-## 初始化
+### 初始化
 
 建议在你的application的`onCreate()`方法里初始化jlog的全局配置，设置一次终身受用。
 
 ```java
 public class RootApp extends Application {
 
+    private static Logger sLogger;
+
     @Override
     public void onCreate() {
         super.onCreate();
-        JLog.init()
-            .setDebug(BuildConfig.DEBUG);
+        List<String> logLevels = new ArrayList<>();
+        logLevels.add(LogLevel.ERROR);
+        logLevels.add(LogLevel.WTF);
+
+        sLogger = Logger.Builder.newBuilder(getApplicationContext(), "jlog")
+                /* 下面的属性都是默认值，你可以根据需求决定是否修改他们. */
+                .setDebug(true)
+                .setWriteToFile(false)
+                .setLogDir("jlog")
+                .setLogPrefix("")
+                .setLogSegment(LogSegment.TWELVE_HOURS)
+                .setLogLevelsForFile(logLevels)
+                .setZoneOffset(TimeUtils.ZoneOffset.P0800)
+                .setTimeFormat("yyyy-MM-dd HH:mm:ss")
+                .setPackagedLevel(0)
+                .setStorage(null)
+                .build();
+    }
+
+    public static Logger getLogger() {
+        return sLogger;
     }
 }
 ```
 
-所有的配置都保存在`JLog`类里。你可以通过`getSettings()`来获取配置，它会返回一个`Settings`对象。修改`Settings`对象后再用`setSettings()`设置，下次使用时就会生效了。
+build后所有的属性都保存在`Logger`对象中。修改它的属性，下次就会生效。
 
-记得把下面的代码添加到你的混淆文件中（例如：`proguard-rules.pro`）。
-
-```xml
--keepattributes SourceFile, LineNumberTable
--keep class com.jiongbull.jlog.** { *; }
-```
 如果你的应用的'targetSdkVersion'是23+，不要忘记在闪屏页或首页申请'android.permission.WRITE_EXTERNAL_STORAG'权限。
-你可以参考这篇文章，[在Android 6.0 设备上动态获取权限](http://gudong.name/%E6%8A%80%E6%9C%AF/2015/11/10/android_m_permission.html).
 
-## init(context)
-
-建议使用application context。
-
-```java
-JLog.init();
-```
-
-## setPackagedLevel(int)
-
-如果需要再封装jlog，请设置封装的层级，否则jlog不能获取调用者的信息.
-
-```java
-JLog.init()
-    .setPackagedLevel(1);
-```
-
-![jlog's stack structure](http://7xize8.com1.z0.glb.clouddn.com/jlog%E7%9A%84%E8%B0%83%E7%94%A8%E6%A0%88%E7%BB%93%E6%9E%84.png)
-
-## setDebug(boolean)
+### setDebug(boolean)
 
 默认是true，日志会输出到控制台中。在发布版本的时候请把这个变量设置为false。
 
 ```java
-JLog.init()
-    .setDebug(false);
+logger.setDebug(false);
 ```
 
 或
 
 ```java
-JLog.init()
-    .setDebug(BuildConfig.DEBUG);
+logger.setDebug(BuildConfig.DEBUG);
 ```
 
-## writeToFile(boolean)
+### writeToFile(boolean)
 
 日志开关，如果是true，日志会输出到文件中，默认是false。
 
 ```java
-JLog.init()
-    .writeToFile(true);
+  logger.writeToFile(true);
 ```
 
-## setLogLevelsForFile(List<LogLevel>)
+### setLogDir(String)
+
+配置日志保存的目录名称，日志目录是位于内部sd卡中，默认名称是`jlog`.
+
+可以使用应用的名称作为日志目录名。
+
+```java
+logger.setLogDir(getString(R.string.app_name));
+```
+
+子目录当然也支持啦，可以使用一些唯一标识作为子目录的名称，比如用户标识。
+
+```java
+logger.setLogDir(getString(R.string.app_name) + File.separator + ${userid});
+
+### setLogPrefix(String)
+
+如果不想使用子目录，你或许可以试一试日志文件的`前缀`功能。
+
+```java
+logger.setLogPrefix("JiongBull");
+```
+
+### setLogSegment(LogSegment)
+
+日志按照时间切片写入到不同的文件中，默认是24小时，文件名诸如`2016-01-19.log`，如果设置为`LogSegment.ONE_HOUR`，文件名就会变成诸如`2016-01-19_0203.log`那样了，表示文件里记录的是2:00到3:00的日志。
+
+```java
+logger.setLogSegment(LogSegment.ONE_HOUR);
+```
+
+### setLogLevelsForFile(List<String>)
 
 这个方法决定了哪些级别的日志可以输出到文件中。默认的日志级别是`LogLevel.ERROR`和`LogLevel.WTF`。
 
 ```java
 List<LogLevel> logLevels = new ArrayList<>();
+logLevels.add(LogLevel.INFO);
 logLevels.add(LogLevel.ERROR);
-logLevels.add(LogLevel.JSON);
-JLog.init()
-    .writeToFile(true)
-    .setLogLevelsForFile(logLevels);
+logger.setLogLevelsForFile(logLevels);
 ```
 
-## setLogDir(String)
-
-配置日志保存的目录名称，日志目录是位于sd卡中，默认名称是`jlog`.
-
-![default directory](http://7xize8.com1.z0.glb.clouddn.com/jlog_def_directory.jpg)
-
-可以使用应用的名称作为日志目录名。
-
-```java
-JLog.init()
-    .writeToFile(true)
-    .setLogDir(getString(R.string.app_name));
-```
-
-![app directory](http://7xize8.com1.z0.glb.clouddn.com/jlog_app_directory.jpg)
-
-子目录当然也支持啦，可以使用一些唯一标识作为子目录的名称，比如用户标识。
-
-```java
-JLog.init()
-    .writeToFile(true)
-    .setLogDir(getString(R.string.app_name) + File.separator + "JiongBull");
-```
-
-![app sub directory](http://7xize8.com1.z0.glb.clouddn.com/jlog_app_sub_directory.jpg)
-
-## setLogPrefix(String)
-
-如果不想使用子目录，你或许可以试一试日志文件的`前缀`功能。
-
-```java
-JLog.init()
-    .writeToFile(true)
-    .setLogDir(getString(R.string.app_name))
-    .setLogPrefix("JiongBull");
-```
-
-![prefix file](http://7xize8.com1.z0.glb.clouddn.com/jlog_prefix_file.jpg)
-
-## setLogSegment(LogSegment)
-
-日志按照时间切片写入到不同的文件中，默认是24小时，文件名诸如`2016-01-19.log`，如果设置为`LogSegment.ONE_HOUR`，文件名就会变成诸如`2016-01-19_0203.log`那样了，表示文件里记录的是2:00到3:00的日志。
-
-```java
-JLog.init()
-    .writeToFile(true)
-    .setLogDir(getString(R.string.app_name))
-    .setLogSegment(LogSegment.ONE_HOUR);
-```
-
-![time segment](http://7xize8.com1.z0.glb.clouddn.com/jlog_time_segment.jpg)
-
-## setCharset(String)
-
-配置日志文件的编码格式，默认是`UTF-8`。
-
-```java
-JLog.init()
-    .writeToFile(true)
-    .setLogDir(getString(R.string.app_name))
-    .setCharset("GBK");
-```
-
-## setTimeFormat(String)
-
-默认的时间格式是`yyyy-MM-dd HH:mm:ss`，你可以使用这个方法让日志更容易理解。
-
-```java
-JLog.init()
-    .writeToFile(true)
-    .setLogDir(getString(R.string.app_name))
-    .setTimeFormat("yyyy年MM月dd日 HH时mm分ss秒");
-```
-
-![time format](http://7xize8.com1.z0.glb.clouddn.com/jlog_time_format.jpg)
-
-## setZoneOffset(ZoneOffset)
+### setZoneOffset(ZoneOffset)
 
 我们可以指定文件里日志时间的时区，而不受用户位置的影响，这样会更容易定位问题，默认是`ZoneOffset.P0800`（+0800），表示“北京时间”。
 
 ```java
-JLog.init()
-    .writeToFile(true)
-    .setLogDir(getString(R.string.app_name))
-    .setZoneOffset(ZoneOffset.P0800);
+logger.setZoneOffset(ZoneOffset.P0800);
 ```
 
-# 用法
+### setTimeFormat(String)
 
-## JLog.v(String)
+默认的时间格式是`yyyy-MM-dd HH:mm:ss`，你可以使用这个方法让日志更容易理解。
+
+```java
+logger.setTimeFormat("yyyy年MM月dd日 HH时mm分ss秒");
+```
+
+### setPackagedLevel(int)
+
+如果需要扩展jlog，请设置封装的层级，否则jlog不能获取调用者的信息.
+
+```java
+logger.setPackagedLevel(1);
+```
+
+### setStorage(IStorage)
+
+可以继承`IStorage`接口，通过`upload`接口把日志上传到远程服务器上，它每隔15分钟会被调用一次。
+
+```java
+logger.setStorage(new IStorage() {
+    @Override
+    public void upload(@NonNull Logger logger) {
+        // 把日志上传到远程服务器上.
+    }
+})
+```
+
+有两种已经预定义的`IStorage`实现，可以直接使用。
+
+*  [jlog-storage-qiniu](https://github.com/JiongBull/jlog-storage-qiniu), 可以把日志上传到[七牛](http://www.qiniu.com)
+* [jlog-storage-disk](https://github.com/JiongBull/jlog-storage-disk), 设置日志的磁盘容量，当超过容量后，会根据日志目录中文件的最后修改时间删除文件。
+
+## 用法
+
+### logger.v(String)
 
 jlog默认会使用调用者的类名作TAG。
 
-![default tag](http://7xize8.com1.z0.glb.clouddn.com/default_tag.jpg)
-
-## JLog.v(TAG, String)
+### logger.v(TAG, String)
 
 你也可以自己指定TAG。
 
-![custom tag](http://7xize8.com1.z0.glb.clouddn.com/custom_tag.jpg)
-
-## JLog.json(json)
+### logger.json(json)
 
 jlog会把json内容格式化，便于理解。
 
-![json](http://7xize8.com1.z0.glb.clouddn.com/json.jpg)
-
-## 混淆
+### 混淆
 
 jlog在混淆模式下依旧工作正常。
 
-![logs in console](http://7xize8.com1.z0.glb.clouddn.com/proguard_console.jpg)
-
-![logs in file](http://7xize8.com1.z0.glb.clouddn.com/proguard_file.jpg)
-
-## 运行环境信息
+### 运行环境信息
 
 在日志文件的顶部，jlog提供了很多有用的运行环境相关的信息，比如`操作系统信息`、`设备信息`和`应用信息`
 
-![environment info en](http://7xize8.com1.z0.glb.clouddn.com/environment_en.jpg)
-
-![environment info zh](http://7xize8.com1.z0.glb.clouddn.com/environment_zh.jpg)
-
-# License
+## License
 
 ```
 Copyright JiongBull 2016
@@ -272,7 +246,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-# 关于
+## 关于
 
 * [GITHUB](https://github.com/JiongBull)
 * [博客](http://jiongbull.com)

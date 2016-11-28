@@ -16,27 +16,47 @@
 
 package com.jiongbull.jlog.sample;
 
-import com.jiongbull.jlog.JLog;
+import com.jiongbull.jlog.Logger;
+import com.jiongbull.jlog.constant.LogLevel;
+import com.jiongbull.jlog.constant.LogSegment;
+import com.jiongbull.jlog.util.TimeUtils;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
-import android.os.Environment;
-import android.util.Log;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Root application.
  */
 public class RootApp extends Application {
 
+    @SuppressLint("StaticFieldLeak")
+    private static Logger sLogger;
+
     @Override
     public void onCreate() {
         super.onCreate();
-        JLog.init(this)
-                .writeToFile(true);
+        List<String> logLevels = new ArrayList<>();
+        logLevels.add(LogLevel.ERROR);
+        logLevels.add(LogLevel.WTF);
+
+        sLogger = Logger.Builder.newBuilder(getApplicationContext(), "jlog")
+                /* properties below are default value, you can modify them or not. */
+                .setWriteToFile(true)
+                .setLogDir("jlog")
+                .setLogPrefix("")
+                .setLogSegment(LogSegment.TWELVE_HOURS)
+                .setLogLevelsForFile(logLevels)
+                .setZoneOffset(TimeUtils.ZoneOffset.P0800)
+                .setTimeFormat("yyyy-MM-dd HH:mm:ss")
+                .setPackagedLevel(0)
+                .setStorage(null)
+                .build();
     }
 
-    @Override
-    public void onTrimMemory(int level) {
-        JLog.flushCache();
-        super.onTrimMemory(level);
+    public static Logger getLogger() {
+        return sLogger;
     }
 }

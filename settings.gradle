@@ -1,3 +1,1 @@
-include ':sample', ':jlog'
-
-
+include ':library', ":sample"

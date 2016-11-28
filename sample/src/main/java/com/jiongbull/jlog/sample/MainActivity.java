@@ -16,8 +16,6 @@
 
 package com.jiongbull.jlog.sample;
 
-import com.jiongbull.jlog.JLog;
-
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.net.Uri;
@@ -71,22 +69,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logNormal(View view) {
-        JLog.v("Default tag");
-        JLog.d("Default tag");
-        JLog.i("Default tag");
-        JLog.w("Default tag");
-        JLog.e("Default tag");
-        JLog.wtf("Default tag");
+        RootApp.getLogger().v("Default tag");
+        RootApp.getLogger().d("Default tag");
+        RootApp.getLogger().i("Default tag");
+        RootApp.getLogger().w("Default tag");
+        RootApp.getLogger().e("Default tag");
+        RootApp.getLogger().wtf("Default tag");
     }
 
     public void logTag(View view) {
         String tag = "LOG_WITH_TAG";
-        JLog.v(tag, "Custom tag");
-        JLog.d(tag, "Custom tag");
-        JLog.i(tag, "Custom tag");
-        JLog.w(tag, "Custom tag");
-        JLog.e(tag, "Custom tag");
-        JLog.wtf(tag, "Custom tag");
+        RootApp.getLogger().v(tag, "Custom tag");
+        RootApp.getLogger().d(tag, "Custom tag");
+        RootApp.getLogger().i(tag, "Custom tag");
+        RootApp.getLogger().w(tag, "Custom tag");
+        RootApp.getLogger().e(tag, "Custom tag");
+        RootApp.getLogger().wtf(tag, "Custom tag");
     }
 
     public void logMoreThan4000(View view) {
@@ -99,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
             while ((line = br.readLine()) != null) {
                 content += line;
             }
-            JLog.i(content);
+            RootApp.getLogger().i(content);
             br.close();
             is.close();
         } catch (IOException e) {
@@ -108,20 +106,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logJson(View view) {
-        JLog.json("{\"location\":{\"id\":\"C23NB62W20TF\",\"name\":\"西雅图\",\"country\":\"US\",\"path\":\"西雅图,华盛顿州,美国\",\"timezone\":\"America/Los_Angeles\",\"timezone_offset\":\"-08:00\"}}");
+        RootApp.getLogger().json("{\"location\":{\"id\":\"C23NB62W20TF\",\"name\":\"西雅图\",\"country\":\"US\",\"path\":\"西雅图,华盛顿州,美国\",\"timezone\":\"America/Los_Angeles\",\"timezone_offset\":\"-08:00\"}}");
     }
 
     public void logProguard(View view) {
         Foo foo = new Foo();
-        foo.now();
-    }
-
-    public void logCrash(View view) {
-        String str = null;
-        str.length();
-    }
-
-    public void ziplog(View view) {
-        JLog.zipLog();
+        foo.now(RootApp.getLogger());
     }
 }

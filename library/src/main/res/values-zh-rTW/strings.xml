@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="os_version_code">OS版本號</string>
+    <string name="os_version_name">OS版本名</string>
+    <string name="os_display_name">OS顯示名</string>
+    <string name="app_version_code">軟體版本號</string>
+    <string name="app_version_name">軟體版本名</string>
+    <string name="brand_info">品牌信息</string>
+    <string name="model_info">設備信息</string>
+    <string name="product_info">產品信息</string>
+    <string name="manufacturer_info">制造商信息</string>
+</resources>

@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="copyright" pattern="file[library]:src/main/java//*||file[sample]:src/main/java//*" />
+</component>
