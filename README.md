@@ -212,9 +212,9 @@ logger.setStorage(new IStorage() {
 
 There are two predefined `IStorage` implement, you can use them directly.
 
-*  [jlog-storage-qiniu](https://github.com/JiongBull/jlog-storage-qiniu), upload logs to [qiniu](http://www.qiniu.com)
+*  [jlog-storage-qiniu](https://github.com/JiongBull/jlog-storage-qiniu), upload logs to [qiniu](http://www.qiniu.com) automatically
 * [jlog-storage-disk](https://github.com/JiongBull/jlog-storage-disk), set disk's capacity for logs, when over capacity,
-it will delete files according to the last modified time of files in log directory.
+it will delete files according to the last modified time of files in log directory
 
 
 ## Usage

@@ -204,8 +204,8 @@ logger.setStorage(new IStorage() {
 
 有两种已经预定义的`IStorage`实现，可以直接使用。
 
-*  [jlog-storage-qiniu](https://github.com/JiongBull/jlog-storage-qiniu), 可以把日志上传到[七牛](http://www.qiniu.com)
-* [jlog-storage-disk](https://github.com/JiongBull/jlog-storage-disk), 设置日志的磁盘容量，当超过容量后，会根据日志目录中文件的最后修改时间删除文件。
+*  [jlog-storage-qiniu](https://github.com/JiongBull/jlog-storage-qiniu), 可以自动把日志上传到[七牛](http://www.qiniu.com)
+* [jlog-storage-disk](https://github.com/JiongBull/jlog-storage-disk), 设置日志的磁盘容量，当超过容量后，会根据日志目录中文件的最后修改时间删除文件
 
 ## 用法
 

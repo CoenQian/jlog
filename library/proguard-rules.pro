@@ -24,4 +24,4 @@
 -dontwarn okio.**
 
 ##---------------jlog---------------
--keep class com.jiongbull.jlog.** { *; }
+-keep class com.jiongbull.jlog.**{*;}

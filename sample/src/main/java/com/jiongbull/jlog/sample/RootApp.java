@@ -43,8 +43,8 @@ public class RootApp extends Application {
         logLevels.add(LogLevel.WTF);
 
         sLogger = Logger.Builder.newBuilder(getApplicationContext(), "jlog")
-                /* properties below are default value, you can modify them or not. */
-                .setWriteToFile(true)
+                /* Properties below are default value, you can modify them or not. */
+                .setWriteToFile(false)
                 .setLogDir("jlog")
                 .setLogPrefix("")
                 .setLogSegment(LogSegment.TWELVE_HOURS)
