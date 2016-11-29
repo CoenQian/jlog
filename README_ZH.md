@@ -30,7 +30,7 @@ jlog是一款针对Android开发者的日志工具。
 * 支持设置日志文件的时间格式
 * 支持设置日志文件的时区（便于调试其他时区的设备）
 * 日志按照时间切片写入到不同的文件中，默认是24小时，文件名诸如`2016-01-19.log`，你也可以指定`前缀`和`时间切片`，比如`${userid}_2016-01-19_2021.log`
-* 支持设置日志文件的磁盘容量，超出后会按文件的最后修改时间清除
+* 支持设置日志的存储空间，超过容量后会按日志的最后修改时间清理，时间越早的越先被清理掉，大约清理出一半配置空间的时停止
 * 支持上传日志到[七牛](http://www.qiniu.com)
 * 支持扩展
 * `TimingLogger`可以记录方法运行的时间
@@ -205,7 +205,7 @@ logger.setStorage(new IStorage() {
 有两种已经预定义的`IStorage`实现，可以直接使用。
 
 *  [jlog-storage-qiniu](https://github.com/JiongBull/jlog-storage-qiniu), 可以自动把日志上传到[七牛](http://www.qiniu.com)
-* [jlog-storage-disk](https://github.com/JiongBull/jlog-storage-disk), 设置日志的磁盘容量，当超过容量后，会根据日志目录中文件的最后修改时间删除文件
+* [jlog-storage-disk](https://github.com/JiongBull/jlog-storage-disk), 超过容量后会按日志的最后修改时间清理，时间越早的越先被清理掉，大约清理出一半配置空间的时停止
 
 ## 用法
 
