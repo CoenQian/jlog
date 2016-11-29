@@ -1,6 +1,7 @@
 # jlog(基佬哥)
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-jlog-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/3166)
+[![License](https://img.shields.io/badge/License-Apache%202.0-brightgreen.svg)](https://github.com/JiongBull/jlog/blob/master/LICENSE.md)
 [![Download](https://jitpack.io/v/JiongBull/jlog.svg)](https://jitpack.io/#JiongBull/jlog)
 [![Build Status](https://travis-ci.org/JiongBull/jlog.svg?branch=master)](https://travis-ci.org/JiongBull/jlog)
 
@@ -228,26 +229,8 @@ jlog在混淆模式下依旧工作正常。
 
 在日志文件的顶部，jlog提供了很多有用的运行环境相关的信息，比如`操作系统信息`、`设备信息`和`应用信息`
 
-## License
-
-```
-Copyright JiongBull 2016
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-```
-
 ## 关于
 
-* [GITHUB](https://github.com/JiongBull)
-* [博客](http://jiongbull.com)
-* [微博](http://weibo.com/jiongbull)
+[![GitHub](https://img.shields.io/badge/GitHub-JiongBull-blue.svg)](https://github.com/JiongBull)
+[![WeiBo](https://img.shields.io/badge/weibo-JiongBull-blue.svg)](https://weibo.com/jiongbull)
+[![Blog](https://img.shields.io/badge/Blog-JiongBull-blue.svg)](http://jiongbull.com)
