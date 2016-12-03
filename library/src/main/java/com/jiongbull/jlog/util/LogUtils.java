@@ -48,7 +48,7 @@ import static com.jiongbull.jlog.constant.LogLevel.WTF;
 import static com.jiongbull.jlog.util.FileUtils.ZIP_EXT;
 
 /**
- * 原生日志工具类.
+ * 日志相关.
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public final class LogUtils {

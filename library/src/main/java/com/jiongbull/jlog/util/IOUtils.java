@@ -22,7 +22,7 @@ import java.io.Closeable;
 import java.io.IOException;
 
 /**
- * IO工具.
+ * IO相关.
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class IOUtils {

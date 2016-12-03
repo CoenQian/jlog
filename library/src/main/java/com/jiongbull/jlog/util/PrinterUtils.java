@@ -24,7 +24,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 /**
- * 打印机工具类.
+ * 打印相关.
  */
 public class PrinterUtils {
 

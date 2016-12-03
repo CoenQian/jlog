@@ -24,7 +24,7 @@ import android.support.annotation.NonNull;
 import java.util.Locale;
 
 /**
- * 系统相关工具.
+ * 系统相关.
  */
 @SuppressWarnings({"unused", "WeakerAccess", "SameReturnValue"})
 public class SysUtils {

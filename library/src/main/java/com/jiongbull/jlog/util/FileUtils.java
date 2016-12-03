@@ -34,12 +34,10 @@ import java.util.zip.ZipOutputStream;
 import static android.content.ContentValues.TAG;
 
 /**
- * 文件工具.
+ * 文件相关.
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class FileUtils {
-
-    private static final int BUFFER_SIZE = 1024;
     /** 压缩文件的扩展名. */
     public static final String ZIP_EXT = ".zip";
 
@@ -157,12 +155,13 @@ public class FileUtils {
         } else {
             BufferedInputStream bis = null;
             try {
-                byte[] buffer = new byte[BUFFER_SIZE];
+                int bufferSize = 1024;
+                byte[] buffer = new byte[bufferSize];
                 FileInputStream fis = new FileInputStream(fileToZip);
-                bis = new BufferedInputStream(fis, BUFFER_SIZE);
+                bis = new BufferedInputStream(fis, bufferSize);
                 zos.putNextEntry(new ZipEntry(zipEntryName));
                 int length;
-                while ((length = bis.read(buffer, 0, BUFFER_SIZE)) != -1) {
+                while ((length = bis.read(buffer, 0, bufferSize)) != -1) {
                     zos.write(buffer, 0, length);
                 }
                 zos.closeEntry();

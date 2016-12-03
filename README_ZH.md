@@ -77,7 +77,7 @@ public class RootApp extends Application {
         logLevels.add(LogLevel.WTF);
 
         sLogger = Logger.Builder.newBuilder(getApplicationContext(), "jlog")
-                /* 下面的属性都是默认值，你可以根据需求决定是否修改他们. */
+                /* 下面的属性都是默认值，你可以根据需求决定是否修改它们. */
                 .setDebug(true)
                 .setWriteToFile(false)
                 .setLogDir("jlog")
@@ -137,6 +137,7 @@ logger.setLogDir(getString(R.string.app_name));
 
 ```java
 logger.setLogDir(getString(R.string.app_name) + File.separator + ${userid});
+```
 
 ### setLogPrefix(String)
 
@@ -220,14 +221,6 @@ jlog默认会使用调用者的类名作TAG。
 ### logger.json(json)
 
 jlog会把json内容格式化，便于理解。
-
-### 混淆
-
-jlog在混淆模式下依旧工作正常。
-
-### 运行环境信息
-
-在日志文件的顶部，jlog提供了很多有用的运行环境相关的信息，比如`操作系统信息`、`设备信息`和`应用信息`
 
 ## 关于
 

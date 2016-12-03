@@ -22,7 +22,7 @@ import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 
 /**
- * 网络工具类.
+ * 网络相关.
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class NetUtils {

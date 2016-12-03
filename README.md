@@ -231,14 +231,6 @@ You can specify TAG as well.
 
 Jlog formats json content in a pretty way
 
-### Proguard
-
-Jlog works well with proguard.
-
-### Running environment information
-
-At the top of log file, jlog provides a lot of useful information about running environment, such `os information`, `device information`, `apk information`
-
 ## About me
 
 [![GitHub](https://img.shields.io/badge/GitHub-JiongBull-blue.svg)](https://github.com/JiongBull)

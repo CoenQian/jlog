@@ -61,7 +61,7 @@ import static com.jiongbull.jlog.util.TimeUtils.ZoneOffset.P1300;
 import static com.jiongbull.jlog.util.TimeUtils.ZoneOffset.P1400;
 
 /**
- * 时间工具.
+ * 时间相关.
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public final class TimeUtils {
