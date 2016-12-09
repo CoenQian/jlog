@@ -118,7 +118,8 @@ public class FileUtils {
      * @param destPath   目标文件路径
      * @param isClean    压缩完毕后是否清理
      */
-    public static void zip(@NonNull String sourcePath, @NonNull String destPath, boolean isClean) throws IOException {
+    public static void zip(@NonNull String sourcePath, @NonNull String destPath, boolean isClean)
+            throws IOException {
         ZipOutputStream zos = null;
         try {
             zos = new ZipOutputStream(new FileOutputStream(destPath));
@@ -143,7 +144,8 @@ public class FileUtils {
      * @param folderPath 父路径，可以为null
      * @throws IOException 压缩失败
      */
-    private static void zip(ZipOutputStream zos, File fileToZip, String folderPath) throws IOException {
+    private static void zip(ZipOutputStream zos, File fileToZip, String folderPath)
+            throws IOException {
         String zipEntryName = fileToZip.getName();
         if (!TextUtils.isEmpty(folderPath)) {
             zipEntryName = folderPath + File.separator + fileToZip.getName();

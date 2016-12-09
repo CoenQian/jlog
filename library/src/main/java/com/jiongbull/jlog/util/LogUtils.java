@@ -16,15 +16,15 @@
 
 package com.jiongbull.jlog.util;
 
-import com.jiongbull.jlog.R;
-import com.jiongbull.jlog.constant.LogLevel;
-import com.jiongbull.jlog.constant.LogSegment;
-
 import android.content.Context;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.jiongbull.jlog.R;
+import com.jiongbull.jlog.constant.LogLevel;
+import com.jiongbull.jlog.constant.LogSegment;
 
 import java.io.File;
 import java.io.FilenameFilter;
@@ -112,7 +112,8 @@ public final class LogUtils {
      * @return 日志目录路径
      */
     public static String genDirPath(@NonNull String logDir) {
-        return Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + logDir;
+        return Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator
+                + logDir;
     }
 
     /**
@@ -123,7 +124,8 @@ public final class LogUtils {
      * @param zoneOffset 时区偏移
      * @return 日志文件名
      */
-    public static String genFileName(String logPrefix, @LogSegment int logSegment, @TimeUtils.ZoneOffset long zoneOffset) {
+    public static String genFileName(String logPrefix, @LogSegment int logSegment,
+            @TimeUtils.ZoneOffset long zoneOffset) {
         logPrefix = TextUtils.isEmpty(logPrefix) ? "" : logPrefix + "_";
         String curDate = TimeUtils.getCurDate(zoneOffset);
         String fileName;
@@ -142,7 +144,8 @@ public final class LogUtils {
      * @param zoneOffset 时区偏移
      * @return 比如“0001”表示00:00-01:00
      */
-    public static String getCurSegment(@LogSegment int logSegment, @TimeUtils.ZoneOffset long zoneOffset) {
+    public static String getCurSegment(@LogSegment int logSegment,
+            @TimeUtils.ZoneOffset long zoneOffset) {
         int hour = TimeUtils.getCurHour(zoneOffset);
         int start = hour - hour % logSegment;
         int end = start + logSegment;
@@ -192,15 +195,17 @@ public final class LogUtils {
      * @param logSegment 日志切片
      * @return 当前时间切片之前的日志
      */
-    public static File[] filterLogFiles(@NonNull File[] logFiles, @TimeUtils.ZoneOffset long zoneOffset,
-                                        String logPrefix, @LogSegment int logSegment) {
+    public static File[] filterLogFiles(@NonNull File[] logFiles,
+            @TimeUtils.ZoneOffset long zoneOffset,
+            String logPrefix, @LogSegment int logSegment) {
         logPrefix = TextUtils.isEmpty(logPrefix) ? "" : logPrefix + "_";
         String curDate = TimeUtils.getCurDate(zoneOffset);
         String referFileName;
         if (logSegment == LogSegment.TWENTY_FOUR_HOURS) {
             referFileName = logPrefix + curDate + LOG_EXT;
         } else {
-            referFileName = logPrefix + curDate + "_" + LogUtils.getCurSegment(logSegment, zoneOffset) + LOG_EXT;
+            referFileName = logPrefix + curDate + "_" + LogUtils.getCurSegment(logSegment,
+                    zoneOffset) + LOG_EXT;
         }
 
         List<File> files = new ArrayList<>();
@@ -265,8 +270,9 @@ public final class LogUtils {
      * @param fileName 文件名
      * @param content  待写内容
      */
-    public static void write(@NonNull final Context context, @NonNull final String dirPath, @NonNull final String fileName,
-                              @NonNull final String content) {
+    public static void write(@NonNull final Context context, @NonNull final String dirPath,
+            @NonNull final String fileName,
+            @NonNull final String content) {
         sExecutorService.execute(new Runnable() {
             @Override
             public void run() {
@@ -301,15 +307,24 @@ public final class LogUtils {
     private static String genInfo(@NonNull Context context) {
         String lineSeparator = SysUtils.getLineSeparator();
         String info = "";
-        info += context.getString(R.string.app_version_name) + ": " + SysUtils.getAppVersionName(context) + lineSeparator;
-        info += context.getString(R.string.app_version_code) + ": " + SysUtils.getAppVersionCode(context) + lineSeparator;
-        info += context.getString(R.string.os_version_name) + ": " + SysUtils.getOsVersionName() + lineSeparator;
-        info += context.getString(R.string.os_version_code) + ": " + SysUtils.getOsVersionCode() + lineSeparator;
-        info += context.getString(R.string.os_display_name) + ": " + SysUtils.getOsVersionDisplayName() + lineSeparator;
-        info += context.getString(R.string.brand_info) + ": " + SysUtils.getBrandInfo() + lineSeparator;
-        info += context.getString(R.string.product_info) + ": " + SysUtils.getProductInfo() + lineSeparator;
-        info += context.getString(R.string.model_info) + ": " + SysUtils.getModelInfo() + lineSeparator;
-        info += context.getString(R.string.manufacturer_info) + ": " + SysUtils.getManufacturerInfo() + lineSeparator + lineSeparator + lineSeparator;
+        info += context.getString(R.string.app_version_name) + ": " + SysUtils.getAppVersionName(
+                context) + lineSeparator;
+        info += context.getString(R.string.app_version_code) + ": " + SysUtils.getAppVersionCode(
+                context) + lineSeparator;
+        info += context.getString(R.string.os_version_name) + ": " + SysUtils.getOsVersionName()
+                + lineSeparator;
+        info += context.getString(R.string.os_version_code) + ": " + SysUtils.getOsVersionCode()
+                + lineSeparator;
+        info += context.getString(R.string.os_display_name) + ": "
+                + SysUtils.getOsVersionDisplayName() + lineSeparator;
+        info += context.getString(R.string.brand_info) + ": " + SysUtils.getBrandInfo()
+                + lineSeparator;
+        info += context.getString(R.string.product_info) + ": " + SysUtils.getProductInfo()
+                + lineSeparator;
+        info += context.getString(R.string.model_info) + ": " + SysUtils.getModelInfo()
+                + lineSeparator;
+        info += context.getString(R.string.manufacturer_info) + ": "
+                + SysUtils.getManufacturerInfo() + lineSeparator + lineSeparator + lineSeparator;
         return info;
     }
 }

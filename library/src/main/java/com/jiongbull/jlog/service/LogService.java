@@ -16,13 +16,13 @@
 
 package com.jiongbull.jlog.service;
 
-import com.jiongbull.jlog.IStorage;
-import com.jiongbull.jlog.Logger;
-import com.jiongbull.jlog.LoggerGlobal;
-
 import android.app.IntentService;
 import android.content.Intent;
 import android.support.v4.content.WakefulBroadcastReceiver;
+
+import com.jiongbull.jlog.IStorage;
+import com.jiongbull.jlog.Logger;
+import com.jiongbull.jlog.LoggerGlobal;
 
 import java.util.Map;
 import java.util.Set;

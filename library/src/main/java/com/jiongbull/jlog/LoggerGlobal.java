@@ -16,14 +16,14 @@
 
 package com.jiongbull.jlog;
 
-import com.jiongbull.jlog.receiver.LogReceiver;
-
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 import android.support.annotation.NonNull;
+
+import com.jiongbull.jlog.receiver.LogReceiver;
 
 import java.util.HashMap;
 import java.util.Map;

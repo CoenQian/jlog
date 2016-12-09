@@ -106,7 +106,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logJson(View view) {
-        RootApp.getLogger().json("{\"location\":{\"id\":\"C23NB62W20TF\",\"name\":\"西雅图\",\"country\":\"US\",\"path\":\"西雅图,华盛顿州,美国\",\"timezone\":\"America/Los_Angeles\",\"timezone_offset\":\"-08:00\"}}");
+        RootApp.getLogger().json(
+                "{\"location\":{\"id\":\"C23NB62W20TF\",\"name\":\"西雅图\",\"country\":\"US\","
+                        + "\"path\":\"西雅图,华盛顿州,美国\",\"timezone\":\"America/Los_Angeles\","
+                        + "\"timezone_offset\":\"-08:00\"}}");
     }
 
     public void logProguard(View view) {

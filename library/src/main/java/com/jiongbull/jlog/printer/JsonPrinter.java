@@ -16,6 +16,9 @@
 
 package com.jiongbull.jlog.printer;
 
+import android.content.Context;
+import android.support.annotation.NonNull;
+
 import com.jiongbull.jlog.constant.LogLevel;
 import com.jiongbull.jlog.constant.LogSegment;
 import com.jiongbull.jlog.util.PrinterUtils;
@@ -24,9 +27,6 @@ import com.jiongbull.jlog.util.TimeUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import android.content.Context;
-import android.support.annotation.NonNull;
 
 /**
  * JSON打印机.
@@ -38,7 +38,7 @@ public class JsonPrinter implements Printer {
 
     @Override
     public void printConsole(@LogLevel String level, @NonNull String tag, @NonNull String message,
-                             @NonNull StackTraceElement element) {
+            @NonNull StackTraceElement element) {
         String json;
         try {
             if (message.startsWith("{")) {
@@ -58,9 +58,9 @@ public class JsonPrinter implements Printer {
 
     @Override
     public void printFile(@NonNull Context context, @LogLevel String level, @NonNull String message,
-                          @NonNull StackTraceElement element, @TimeUtils.ZoneOffset long zoneOffset,
-                          @NonNull String timeFmt, @NonNull String logDir, String logPrefix,
-                          @LogSegment int logSegment) {
+            @NonNull StackTraceElement element, @TimeUtils.ZoneOffset long zoneOffset,
+            @NonNull String timeFmt, @NonNull String logDir, String logPrefix,
+            @LogSegment int logSegment) {
         synchronized (Printer.class) {
             PrinterUtils.printFile(context, logDir, logPrefix, logSegment, zoneOffset,
                     PrinterUtils.decorateMsgForFile(level, message, element, zoneOffset, timeFmt));

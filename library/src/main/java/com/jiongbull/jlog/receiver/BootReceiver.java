@@ -16,11 +16,11 @@
 
 package com.jiongbull.jlog.receiver;
 
-import com.jiongbull.jlog.LoggerGlobal;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
+import com.jiongbull.jlog.LoggerGlobal;
 
 /**
  * 监听开机启动的receiver.

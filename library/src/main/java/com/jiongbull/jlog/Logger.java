@@ -16,6 +16,12 @@
 
 package com.jiongbull.jlog;
 
+import android.content.Context;
+import android.support.annotation.IntRange;
+import android.support.annotation.NonNull;
+import android.text.TextUtils;
+import android.util.Log;
+
 import com.jiongbull.jlog.constant.LogLevel;
 import com.jiongbull.jlog.constant.LogSegment;
 import com.jiongbull.jlog.printer.DefaultPrinter;
@@ -23,12 +29,6 @@ import com.jiongbull.jlog.printer.JsonPrinter;
 import com.jiongbull.jlog.printer.Printer;
 import com.jiongbull.jlog.util.LogUtils;
 import com.jiongbull.jlog.util.TimeUtils;
-
-import android.content.Context;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
-import android.text.TextUtils;
-import android.util.Log;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -421,8 +421,8 @@ public class Logger {
         StackTraceElement[] elements = new Throwable().getStackTrace();
         int index = getStackIndex(elements);
         if (index == -1) {
-            throw new IllegalStateException("set -keep class com.jiongbull.jlog.** { *; } in your proguard config file" +
-                    " or reduce packageLevel");
+            throw new IllegalStateException(
+                    "pls reduce packageLevel");
         }
         StackTraceElement element = elements[index];
         if (TextUtils.isEmpty(tag)) {
@@ -441,8 +441,8 @@ public class Logger {
                     mDefaultPrinter.printConsole(level, tag, message, element);
                 }
                 if (isOutputToFile) {
-                    mDefaultPrinter.printFile(mContext, level, message, element, mZoneOffset, mTimeFormat, mLogDir,
-                            mLogPrefix, mLogSegment);
+                    mDefaultPrinter.printFile(mContext, level, message, element, mZoneOffset,
+                            mTimeFormat, mLogDir, mLogPrefix, mLogSegment);
                 }
                 break;
             case LogLevel.JSON:
@@ -450,8 +450,8 @@ public class Logger {
                     mJsonPrinter.printConsole(level, tag, message, element);
                 }
                 if (isOutputToFile) {
-                    mJsonPrinter.printFile(mContext, level, message, element, mZoneOffset, mTimeFormat, mLogDir,
-                            mLogPrefix, mLogSegment);
+                    mJsonPrinter.printFile(mContext, level, message, element, mZoneOffset,
+                            mTimeFormat, mLogDir, mLogPrefix, mLogSegment);
                 }
                 break;
             default:

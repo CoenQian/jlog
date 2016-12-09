@@ -34,7 +34,8 @@ public class NetUtils {
      * @return true - 当前网络已连接, false - 当前网络未连接
      */
     public static boolean isNetConnected(@NonNull Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(
+                Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
     }
@@ -71,7 +72,8 @@ public class NetUtils {
 
     @SuppressWarnings("deprecation")
     private static boolean isNetConnected(@NonNull Context context, int networkType) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(
+                Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getNetworkInfo(networkType);
         return networkInfo != null && networkInfo.isConnected();
     }

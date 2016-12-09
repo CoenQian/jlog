@@ -16,13 +16,13 @@
 
 package com.jiongbull.jlog.sample;
 
+import android.annotation.SuppressLint;
+import android.app.Application;
+
 import com.jiongbull.jlog.Logger;
 import com.jiongbull.jlog.constant.LogLevel;
 import com.jiongbull.jlog.constant.LogSegment;
 import com.jiongbull.jlog.util.TimeUtils;
-
-import android.annotation.SuppressLint;
-import android.app.Application;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +34,10 @@ public class RootApp extends Application {
 
     @SuppressLint("StaticFieldLeak")
     private static Logger sLogger;
+
+    public static Logger getLogger() {
+        return sLogger;
+    }
 
     @Override
     public void onCreate() {
@@ -54,9 +58,5 @@ public class RootApp extends Application {
                 .setPackagedLevel(0)
                 .setStorage(null)
                 .build();
-    }
-
-    public static Logger getLogger() {
-        return sLogger;
     }
 }

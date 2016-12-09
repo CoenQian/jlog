@@ -16,11 +16,11 @@
 
 package com.jiongbull.jlog.receiver;
 
-import com.jiongbull.jlog.service.LogService;
-
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.WakefulBroadcastReceiver;
+
+import com.jiongbull.jlog.service.LogService;
 
 /**
  * 接收唤醒日志任务的广播.

@@ -16,12 +16,12 @@
 
 package com.jiongbull.jlog.printer;
 
+import android.content.Context;
+
 import com.jiongbull.jlog.constant.LogLevel;
 import com.jiongbull.jlog.constant.LogSegment;
 import com.jiongbull.jlog.util.SysUtils;
 import com.jiongbull.jlog.util.TimeUtils;
-
-import android.content.Context;
 
 /**
  * 打印接口.
@@ -39,7 +39,8 @@ public interface Printer {
      * @param message 信息
      * @param element 堆栈元素
      */
-    void printConsole(@LogLevel String level, String tag, String message, StackTraceElement element);
+    void printConsole(@LogLevel String level, String tag, String message,
+            StackTraceElement element);
 
     /**
      * 日志打印输出到文件.
@@ -48,7 +49,7 @@ public interface Printer {
      * @param message 信息
      * @param element 堆栈元素
      */
-    void printFile(Context context, @LogLevel String level, String message, StackTraceElement element,
-                   @TimeUtils.ZoneOffset long zoneOffset, String timeFmt, String logDir, String logPrefix,
-                   @LogSegment int logSegment);
+    void printFile(Context context, @LogLevel String level, String message,
+            StackTraceElement element, @TimeUtils.ZoneOffset long zoneOffset, String timeFmt,
+            String logDir, String logPrefix, @LogSegment int logSegment);
 }
