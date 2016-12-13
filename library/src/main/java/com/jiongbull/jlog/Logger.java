@@ -99,7 +99,7 @@ public class Logger {
      * @param tag     标签
      * @param message 信息
      */
-    public void v(String tag, @NonNull String message) {
+    public void v(@NonNull String tag, @NonNull String message) {
         printLog(LogLevel.VERBOSE, tag, null, message);
     }
 
@@ -118,7 +118,7 @@ public class Logger {
      * @param tag     标签
      * @param message 信息
      */
-    public void d(String tag, @NonNull String message) {
+    public void d(@NonNull String tag, @NonNull String message) {
         printLog(LogLevel.DEBUG, tag, null, message);
     }
 
@@ -137,7 +137,7 @@ public class Logger {
      * @param tag     标签
      * @param message 信息
      */
-    public void i(String tag, @NonNull String message) {
+    public void i(@NonNull String tag, @NonNull String message) {
         printLog(LogLevel.INFO, tag, null, message);
     }
 
@@ -156,7 +156,7 @@ public class Logger {
      * @param tag  标签
      * @param json json
      */
-    public void json(String tag, @NonNull String json) {
+    public void json(@NonNull String tag, @NonNull String json) {
         printLog(LogLevel.JSON, tag, null, json);
     }
 
@@ -175,7 +175,7 @@ public class Logger {
      * @param tag     标签
      * @param message 信息
      */
-    public void w(String tag, @NonNull String message) {
+    public void w(@NonNull String tag, @NonNull String message) {
         printLog(LogLevel.WARN, tag, null, message);
     }
 
@@ -195,7 +195,7 @@ public class Logger {
      * @param t       {@link Throwable}
      * @param message 信息
      */
-    public void e(String tag, Throwable t, String message) {
+    public void e(@NonNull String tag, @NonNull Throwable t, @NonNull String message) {
         printLog(LogLevel.ERROR, tag, t, message);
     }
 
@@ -205,7 +205,7 @@ public class Logger {
      * @param t       {@link Throwable}
      * @param message 信息
      */
-    public void e(Throwable t, String message) {
+    public void e(@NonNull Throwable t, @NonNull String message) {
         printLog(LogLevel.ERROR, null, t, message);
     }
 
@@ -215,7 +215,7 @@ public class Logger {
      * @param tag     标签
      * @param message 信息
      */
-    public void e(String tag, @NonNull String message) {
+    public void e(@NonNull String tag, @NonNull String message) {
         printLog(LogLevel.ERROR, tag, null, message);
     }
 
@@ -234,7 +234,7 @@ public class Logger {
      * @param tag 标签
      * @param t   {@link Throwable}
      */
-    public void e(String tag, @NonNull Throwable t) {
+    public void e(@NonNull String tag, @NonNull Throwable t) {
         printLog(LogLevel.ERROR, tag, t, null);
     }
 
@@ -254,7 +254,7 @@ public class Logger {
      * @param t       {@link Throwable}
      * @param message 信息
      */
-    public void wtf(String tag, Throwable t, String message) {
+    public void wtf(@NonNull String tag, @NonNull Throwable t, @NonNull String message) {
         printLog(LogLevel.WTF, tag, t, message);
     }
 
@@ -264,7 +264,7 @@ public class Logger {
      * @param t       {@link Throwable}
      * @param message 信息
      */
-    public void wtf(Throwable t, String message) {
+    public void wtf(@NonNull Throwable t, @NonNull String message) {
         printLog(LogLevel.WTF, null, t, message);
     }
 
@@ -274,7 +274,7 @@ public class Logger {
      * @param tag     标签
      * @param message 信息
      */
-    public void wtf(String tag, @NonNull String message) {
+    public void wtf(@NonNull String tag, @NonNull String message) {
         printLog(LogLevel.WTF, tag, null, message);
     }
 
@@ -293,7 +293,7 @@ public class Logger {
      * @param tag 标签
      * @param t   {@link Throwable}
      */
-    public void wtf(String tag, @NonNull Throwable t) {
+    public void wtf(@NonNull String tag, @NonNull Throwable t) {
         printLog(LogLevel.WTF, tag, t, null);
     }
 
