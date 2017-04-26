@@ -46,10 +46,11 @@ Add the repository to the root's build.gradle.
 
 ```groovy
 allprojects {
- repositories {
-    jcenter()
-    maven { url "https://jitpack.io" }
- }
+        repositories {
+            jcenter()
+            maven { url "https://jitpack.io" }
+        }
+    }
 ```
 
 And add dependencies to the module's build.gradle.
