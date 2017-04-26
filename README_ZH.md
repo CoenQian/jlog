@@ -44,10 +44,11 @@ jlog是一款针对Android开发者的日志工具。
 
 ```groovy
 allprojects {
- repositories {
-    jcenter()
-    maven { url "https://jitpack.io" }
- }
+        repositories {
+            jcenter()
+            maven { url "https://jitpack.io" }
+        }
+    }
 ```
 
 在模块的build.gradle中添加依赖。
